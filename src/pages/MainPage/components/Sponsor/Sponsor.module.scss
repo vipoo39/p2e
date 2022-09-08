@@ -1,0 +1,132 @@
+@keyframes bAnim {
+    0%{
+        top: 50%;
+        left: 50%;
+    }
+
+    25%{
+        top: calc(50% + 3px);
+        left: calc(50% + 2px);
+    }
+
+    50%{
+        top: calc(50% - 2px);
+        left: calc(50% - 2px);
+    }
+
+    75%{
+        top: calc(50% - 2px);
+        left: calc(50% + 3px);
+    }
+
+    100%{
+
+        top: 50%;
+        left: 50%;
+    }
+}
+
+@keyframes gAnim {
+    0%{
+        top: 50%;
+        left: 50%;
+    }
+
+    25%{
+        top: calc(50% - 3px);
+        left: calc(50% - 2px);
+    }
+
+    50%{
+        top: calc(50% + 2px);
+        left: calc(50% + 2px);
+    }
+
+    75%{
+        top: calc(50% + 2px);
+        left: calc(50% - 3px);
+    }
+
+    100%{
+
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+    }
+}
+
+.t{
+    z-index: 3;
+    position: absolute;
+}
+
+.g{
+    z-index: 2;
+    position: absolute;
+    filter: invert(27%) sepia(75%) saturate(6542%) hue-rotate(134deg) brightness(106%) contrast(95%);
+}
+
+.b{
+    position: absolute;
+    z-index: 1;
+    filter: invert(32%) sepia(63%) saturate(7492%) hue-rotate(211deg) brightness(99%) contrast(98%);
+}
+
+.img{
+    max-width: 100px;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 60px auto;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.item{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    & > a {
+        transition: box-shadow .3s;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        display: block;
+        img{
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    
+        &:hover{
+            & > img:nth-child(2n) {
+                animation: bAnim 0.4s ease infinite;
+            }
+    
+            & > img:nth-child(3n) {
+                animation: gAnim 0.4s ease infinite;
+            }
+        }
+    }
+}
+
+.title{
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 20px;
+
+}
+
+@media(max-width: 1000px){
+    .container{
+        flex-direction: column;
+    }
+}
