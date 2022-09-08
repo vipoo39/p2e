@@ -1,0 +1,1 @@
+https://dedstriger.github.io/game/#/
