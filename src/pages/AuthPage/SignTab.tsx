@@ -43,6 +43,7 @@ export default function SignTab(){
                 <input type='checkbox' className={styles.radio} id='radio' />
                 <label htmlFor='radio'>Запомнить меня</label>
             </div>
+            <button className={styles.btn}  style={{marginBottom: 0}}>Войти</button>
         </form>
     )
 }
