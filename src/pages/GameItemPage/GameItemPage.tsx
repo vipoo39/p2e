@@ -6,6 +6,7 @@ import styles from './GameItemPage.module.scss'
 import Table from "./components/Table/Table";
 import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
+import { ExtraText } from "./components/ExtraText/ExtraText";
 
 
 export default function GameItemPage(){
@@ -19,6 +20,7 @@ export default function GameItemPage(){
             <Breadcrumbs />
             <Card category={activeCategory} setCategory={setActiveCategory} {...item}/>
             <Table game={item.name} category={activeCategory}/>
+            <ExtraText />
         </div>
     )
 }

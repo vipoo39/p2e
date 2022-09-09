@@ -4,7 +4,7 @@ import aionc from '../assets/aionc.png'
 import aioncBig from '../assets/aionc-big.png'
 import avatar from '../assets/avatar.png'
 
-export const lettersMock = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R',  'U', 'V', 'W', 'X', 'Y']
+export const lettersMock = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ,'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 export const games = [
     {
@@ -148,31 +148,60 @@ export const lootMock= [
         price: 0.88,
         rate: 2,
         review: 10,
-        nikname: 'test3'
+        nikname: 'test1',
+        online: 'Онлайн'
     },
     {
         id: '2',
-        server: 'North',
-        side: 'Асмодиане',
+        server: 'West',
+        side: 'Асмодиане2',
         description: 'Равным образом сложившаяся структура ',
         avatar: avatar,
         count: 500,
         price: 0.88,
         rate: 3,
         review: 10,
-        nikname: 'test2'
+        nikname: 'test2',
+        online: 'Оффлайн'
+    },
+    {
+        id: '5',
+        server: 'West',
+        side: 'Асмодиане2',
+        description: 'Равным образом сложившаяся структура ',
+        avatar: avatar,
+        count: 500,
+        price: 0.88,
+        rate: 3,
+        review: 10,
+        nikname: 'test3',
+        online: 'Оффлайн'
+    },
+    {
+        id: '7',
+        server: 'West',
+        side: 'Асмодиане3',
+        description: 'Равным образом сложившаяся структура ',
+        avatar: avatar,
+        count: 500,
+        price: 0.88,
+        rate: 3,
+        review: 10,
+        nikname: 'test4',
+        online: 'Оффлайн'
     },
     {
         id: '3',
-        server: 'North',
-        side: 'Асмодиане',
+        server: 'South',
+        side: 'Асмодиане2',
         description: 'Равным образом сложившаяся структура ',
         avatar: avatar,
         count: 500,
         price: 0.88,
         rate: 5,
         review: 10,
-        nikname: 'test'
+        nikname: 'test5',
+        online: 'Онлайн'
     }
 ]
 

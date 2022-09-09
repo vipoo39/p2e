@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import Input from './Input';
 import styles from './OrderPage.module.scss'
@@ -10,7 +10,7 @@ import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { HistoryReview } from './HistoryReview';
 
 export default function OrderPage() {
-    const location = useLocation<{ back: string; game: string; avatar: string; nikname: string }>()
+    const location = useLocation<{ back: string; game: string; avatar: string; nikname: string, online: string }>()
     const history = useHistory()
     useBreadcrumbs([{ name: location.state?.game, link: `/game/${location.pathname.slice(-1)}` } || '', { name: location.state?.back, link: null }])
     const [name, setName] = useState('')
@@ -81,7 +81,7 @@ export default function OrderPage() {
                         <img src={location.state.avatar} alt='avatar' />
                         <div>
                             <div className={styles.chatName}>{location.state.nikname || 'nick'}</div>
-                            <div className={styles.chatStatus}>Online</div>
+                            <div className={styles.chatStatus}>{location.state.online === 'Онлайн' ? 'online' : 'offline'}</div>
                         </div>
                     </div>
                     <Chat

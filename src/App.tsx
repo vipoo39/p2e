@@ -17,6 +17,8 @@ import ComunityPage, {ComunityPageVariant} from './pages/ComunityPage/ComunityPa
 import SettingsPage from './pages/SettingsPage/SettingsPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
+import { NotFound } from './pages/NotFound/NotFound';
+import './App.scss';
 
 function App() {
  const NavigationContainer = () => {
@@ -83,6 +85,9 @@ function App() {
         </Route>
         <Route path={COMFIRM_URL} exact>
           <OrderConfirmPage/>
+        </Route>
+        <Route path='*'>
+          <NotFound />
         </Route>
       </Switch>
       <Footer/>

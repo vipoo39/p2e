@@ -15,13 +15,14 @@ export type TableItemProps = {
     game: string;
     category: string;
     id: string;
+    online: string;
 }
 
-export default function TableItem({ id, server, game, category, side, description, nikname, avatar, rate, review, count, price}: TableItemProps){
+export default function TableItem({ id, server, game, category, side, description, nikname, avatar, rate, review, count, price, online}: TableItemProps){
     return(
        <Link 
         className={styles.item}
-        to={{pathname: `${ORDER_URL}/${id}`, state: {nikname, avatar, server, side, count, game, back: category}}}
+        to={{pathname: `${ORDER_URL}/${id}`, state: {nikname, avatar, server, side, count, game, back: category, online}}}
        >
         <div className={styles.server}>{server}</div>
         <div className={styles.side}>{side}</div>
