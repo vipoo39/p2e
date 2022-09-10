@@ -17,12 +17,12 @@ export default function SignTab(){
 
     const handleSubmit = useCallback((event: FormEvent) =>  {
         event.preventDefault()
-        if(checkSubmit('email', email).status && checkSubmit('password', pass).status){
+        if(checkSubmit('email', email).status && checkSubmit('passwordL', pass).status){
             let obj = {email, pass, rememberMe}
             setErr('')
             console.log(obj)
         } else {
-            setErr( !checkSubmit('email', email).status ? checkSubmit('email', email).text  : checkSubmit('password', pass).text  )
+            setErr( !checkSubmit('email', email).status ? checkSubmit('email', email).text  : checkSubmit('passwordL', pass).text  )
         }
     }, [checkSubmit, email, pass, rememberMe])
     return(

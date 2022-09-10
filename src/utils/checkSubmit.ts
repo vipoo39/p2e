@@ -30,6 +30,12 @@ export default function checkSubmit(type: string, value: string){
             }
             return {status: false, text : 'Некорректный пароль (пример: aaaaaaa111)'}
         }
+        case 'passwordL': {
+            if (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)) {
+                return {status: true, text: 'ok'} 
+            }
+            return {status: false, text : 'Некорректный пароль'}
+        }
         case 'passwordT': {
             if (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)) {
                 return {status: true, text: 'ok'} 
