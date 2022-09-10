@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { breadcrumbsReducer } from './reducers/breadcrumbsReducer'
+import { searchReducer } from './reducers/searchReducer'
 
 export const store = configureStore({
   reducer: {
     breadcrumbs: breadcrumbsReducer,
+    search: searchReducer,
   },
 })
 

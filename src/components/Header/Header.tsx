@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import styles from './Header.module.scss'
 import { MAIN_URL, REGISTER_URL, SERVICE_URL, SINGIN_URL, CONTACT_URL, FINANCE_URL, BUY_URL, COMUNITY_URL } from '../../utils/links';
@@ -19,6 +19,7 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
     const [searchValue, setSearchvalue] = useState('')
     const [isPcSearch, setIsPCSearch] = useState(false)
     const [isMobileSearch, setIsMobileSearch] = useState(false)
+    const { pathname } = useLocation()
 
     const refHeader = useRef<HTMLDivElement>(null)
     useEffect(() => {
@@ -46,13 +47,15 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
             window.removeEventListener('click', handleClickOutside)
         }
     }, [])
+
     return (
         <header className={styles.container}>
             <div className={`${styles.top} ${isMobileSearch ? styles.top_search : ''}`} ref={refHeader}>
                 <Logo className={styles.logo} />
-                {isMobileSearch
+                {(pathname === '/') ? isMobileSearch
                     ? <Search className={styles.search} onBlur={() => setIsMobileSearch(false)} value={searchValue} onValueChange={setSearchvalue} />
                     : <img src={searchIcon} className={styles.openSearchIcon} onClick={() => setIsMobileSearch(true)} alt='search' />
+                    : undefined
                 }
                 {
                     !show ? (
@@ -78,9 +81,10 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
                             Контакты
                         </Link>
                     </div>
-                    {isPcSearch
+                    {(pathname === '/') ? isPcSearch
                         ? <Search className={styles.search_menu} onBlur={() => setIsPCSearch(false)} value={searchValue} onValueChange={setSearchvalue} />
                         : <img src={searchIcon} className={styles.openSearchIcon_menu} onClick={() => setIsPCSearch(true)} alt='search' />
+                        : undefined
                     }
                     {/* { !show &&
                     <div className={styles.groupSocial} >

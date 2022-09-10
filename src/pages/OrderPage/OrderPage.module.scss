@@ -188,15 +188,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--active);
-        border-radius: 10px;
-        color: #fff;
-        text-decoration: none;
         font-size: 16px;
         max-width: 280px;
-        border: none;
-        outline: none;
-        width: 100%;
+        background: transparent;
+        border-radius: 4px;
+        margin-top: 10px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        transition: border-color .3s;
+        &:hover {
+            border-color: var(--active);
+            opacity: 1 !important;
+        }
     }
 }
 

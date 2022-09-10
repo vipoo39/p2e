@@ -1,6 +1,10 @@
 import styles from './Search.module.scss'
 import icon from '../../assets/search.svg'
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { games } from '../../utils/mockData';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchItems, selectSearchValue } from '../../redux/selectors';
+import { updateSearchValue } from '../../redux/reducers/searchReducer';
 
 export type SearchProps = {
     value: string;
@@ -10,19 +14,27 @@ export type SearchProps = {
     className?: string;
 }
 
-export default function Search({value, onValueChange, placeholder, onBlur, className}:SearchProps){
+export default function Search({ placeholder, onBlur, className}:SearchProps){
     const inputRef = useRef<HTMLInputElement>(null)
-    const searchRef = useRef<HTMLImageElement>(null)
+    const clearRef = useRef<HTMLButtonElement>(null)
+    const dispatch = useDispatch()
+    const searchValue = useSelector(selectSearchValue)
 
     useEffect(() => {
         inputRef.current?.focus()
     }, [])
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
-        
-        // console.log(event.target, searchRef?.current)
-        // if (inputRef.current && !inputRef.current.contains(event.target) && onBlur) {
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {        
+        if (event.relatedTarget !== clearRef.current && onBlur && searchValue === '') {
+            onBlur()
+        } else if (event.relatedTarget === clearRef.current) {
+            dispatch(updateSearchValue(''))
             onBlur && onBlur()
-        // }
+        } else {
+            inputRef.current?.focus()
+        }
+    }
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(updateSearchValue(e.target.value))
     }
 
     return(
@@ -31,11 +43,11 @@ export default function Search({value, onValueChange, placeholder, onBlur, class
                 ref={inputRef}
                 className={styles.input} 
                 placeholder={placeholder || 'Поиск...'} 
-                value={value}
+                value={searchValue}
                 onBlur={handleBlur}
-                onChange={(e) => onValueChange(e.target.value)}
+                onChange={handleInputChange}
             />
-            <img ref={searchRef} className={styles.icon} src={icon} alt='icon'/>
+            <button ref={clearRef} className={styles.icon}>+</button>
         </div>
     )
 }

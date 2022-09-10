@@ -11,7 +11,7 @@ export default function ContactPage(){
     const ref = useRef<HTMLFormElement>(null)
     const handleSubmit = useCallback((event: FormEvent) =>  {
         event.preventDefault()
-        const nResp =  checkSubmit('text', name)
+        const nResp =  checkSubmit('name', name)
         const mResp =  checkSubmit('mail', mail)
         const pResp =  checkSubmit('tel', tel)
         const ptResp =  checkSubmit('text', mess)
@@ -21,7 +21,8 @@ export default function ContactPage(){
             mResp.status 
         ){
             setErr('')
-            ref.current?.submit()
+            let obj = {name, mail, tel, mess}
+            console.log(obj)
         } else {
             setErr( 
                 (!nResp.status && nResp.text) ||
@@ -47,21 +48,22 @@ export default function ContactPage(){
                     className={styles.input} 
                     value={mail}
                     onChange={(e) => setMail(e.target.value)}
-                    type='text'
+                    type='email'
                     placeholder='Введите свой E-mail'
                 />
                 <input 
                     className={styles.input} 
                     value={tel}
                     onChange={(e) => setTel(e.target.value)}
-                    placeholder='Введите номер телефона '
+                    type='phone'
+                    placeholder='Введите номер телефона'
                 />
                 <textarea 
                     rows={4}
                     className={styles.input} 
                     value={mess}
                     onChange={(e) => setMess(e.target.value)}
-                    placeholder='Введите номер телефона '
+                    placeholder='Введите сообщение'
                 />
                 <button className={styles.btn}>Отправить</button>
             </form>

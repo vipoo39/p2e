@@ -16,15 +16,6 @@
     display: none;
 }
 
-.header {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 .header, .item{
     padding: 0px 20px;
     display: flex;
@@ -80,6 +71,19 @@
         }
     }
 }
+
+.header {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    @media screen and (max-width: 1000px) {
+        padding: 0;
+    }
+}
+
 .headerServer {
     max-width: 100px;
 }
@@ -88,7 +92,6 @@
     position: relative;
     .name {
         @include textOverflow;
-        cursor: pointer;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -97,6 +100,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
         .deleteFilter {
             cursor: pointer;

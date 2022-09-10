@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import { HashRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -32,8 +32,19 @@ function App() {
   , [location.pathname])
   const [showMenu, setIsShowMenu] = useState(false)
   
-  return(
-    <div className="App" 
+  useEffect(() => {
+    let pathname = location.pathname
+    let captcha = document.getElementsByClassName('grecaptcha-badge')[0]
+    if (pathname.includes('login') || pathname.includes('registrate')) {
+      //@ts-ignore
+      captcha.style.display = 'flex' 
+    } else {
+      //@ts-ignore
+      captcha.style.display = 'none' 
+    }
+  }, [location])
+
+  return <div className="App" 
     // style={showMenu ? { left: '-80vw'} : {}}
     >
     <Header auth={checkAuth()} setShow={setIsShowMenu}  show={showMenu}/>
@@ -92,7 +103,6 @@ function App() {
       </Switch>
       <Footer/>
   </div>
-  )
  }
   return (
     <Router>
