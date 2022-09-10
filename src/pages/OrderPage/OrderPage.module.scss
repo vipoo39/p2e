@@ -37,7 +37,7 @@
     grid-template-columns: calc(60% - 30px) 40%;
     gap: 30px;
     @media screen and (max-width: 1000px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: 100%;
     }
     .info {
         @media screen and (max-width: 1000px) {
@@ -141,7 +141,7 @@
 }
 
 .buy {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     a {
         padding: 7px 12px;
     }
@@ -281,10 +281,6 @@
 }
 
 @media(max-width: 1000px){
-    .content{
-        flex-direction: column;
-    }
-
     .chat{
         height: 400px;
     }
