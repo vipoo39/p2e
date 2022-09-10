@@ -37,10 +37,10 @@ function App() {
     let captcha = document.getElementsByClassName('grecaptcha-badge')[0]
     if (pathname.includes('login') || pathname.includes('registrate')) {
       //@ts-ignore
-      captcha.style.display = 'flex' 
+      captcha?.style.display = 'flex' 
     } else {
       //@ts-ignore
-      captcha.style.display = 'none' 
+      captcha?.style.display = 'none' 
     }
   }, [location])
 
