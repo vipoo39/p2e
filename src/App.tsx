@@ -35,12 +35,12 @@ function App() {
   useEffect(() => {
     let pathname = location.pathname
     let captcha = document.getElementsByClassName('grecaptcha-badge')[0]
-    if (pathname.includes('login') || pathname.includes('registrate')) {
+    if ((pathname.includes('login') || pathname.includes('registrate') && captcha)) {
       //@ts-ignore
-      captcha?.style.display = 'flex' 
+      captcha.style.display = 'flex' 
     } else {
       //@ts-ignore
-      captcha?.style.display = 'none' 
+      captcha.style.display = 'none' 
     }
   }, [location])
 
