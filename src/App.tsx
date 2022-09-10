@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -7,13 +7,13 @@ import './styles/App.scss';
 import ServicePage from './pages/ServicePage/SetvicePage';
 import MainPage from './pages/MainPage/MainPage';
 import GameItemPage from './pages/GameItemPage/GameItemPage';
-import InfoPage, {InfoPageVariant} from './pages/InfoPage/InfoPage';
-import AuthPage, {AuthPageVariant} from './pages/AuthPage/AuthPage';
+import InfoPage, { InfoPageVariant } from './pages/InfoPage/InfoPage';
+import AuthPage, { AuthPageVariant } from './pages/AuthPage/AuthPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import FinancePage from './pages/FinancePage/FinancePage';
 import BuyPage from './pages/BuyPage/BuyPage';
-import ComunityPage, {ComunityPageVariant} from './pages/ComunityPage/ComunityPage';
+import ComunityPage, { ComunityPageVariant } from './pages/ComunityPage/ComunityPage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
@@ -21,92 +21,95 @@ import { NotFound } from './pages/NotFound/NotFound';
 import './App.scss';
 
 function App() {
- const NavigationContainer = () => {
-  const location = useLocation()
-  const checkAuth = useCallback(() => 
-  location.pathname === PROFILE_URL ||
-  location.pathname === FINANCE_URL ||
-  location.pathname === SETTINGS_URL ||
-  !!location.pathname.match(COMUNITY_URL) || 
-  location.pathname === BUY_URL
-  , [location.pathname])
-  const [showMenu, setIsShowMenu] = useState(false)
-  
-  useEffect(() => {
-    let pathname = location.pathname
-    let captcha = document.getElementsByClassName('grecaptcha-badge')[0]
-    if ((pathname.includes('login') || pathname.includes('registrate') && captcha)) {
-      //@ts-ignore
-      captcha.style.display = 'flex' 
-    } else {
-      //@ts-ignore
-      captcha.style.display = 'none' 
-    }
-  }, [location])
+  const NavigationContainer = () => {
+    const location = useLocation()
+    const checkAuth = useCallback(() =>
+      location.pathname === PROFILE_URL ||
+      location.pathname === FINANCE_URL ||
+      location.pathname === SETTINGS_URL ||
+      !!location.pathname.match(COMUNITY_URL) ||
+      location.pathname === BUY_URL
+      , [location.pathname])
+    const [showMenu, setIsShowMenu] = useState(false)
+    
+    useEffect(() => {
+      let pathname = location.pathname
+      setTimeout(() => {
+        let captcha = document.getElementsByClassName('grecaptcha-badge')[0] as Element | undefined
+        console.log(captcha)
+        if ((pathname.includes('login') || pathname.includes('registrate')) && captcha !== undefined) {
+          captcha?.classList.remove('captcha_hide')
+          captcha?.classList.add('captcha_show')
+        } else {
+          captcha?.classList.remove('captcha_show')
+          captcha?.classList.add('captcha_hide')
+        }
+      }, 100)
+    }, [location])
 
-  return <div className="App" 
+    return <div className="App"
     // style={showMenu ? { left: '-80vw'} : {}}
     >
-    <Header auth={checkAuth()} setShow={setIsShowMenu}  show={showMenu}/>
+      <Header auth={checkAuth()} setShow={setIsShowMenu} show={showMenu} />
       <Switch location={location}>
         <Route path={MAIN_URL} exact>
           <MainPage />
         </Route>
         <Route path={SERVICE_URL} exact>
-          <ServicePage/>
+          <ServicePage />
         </Route>
         <Route path={`${GAMES_URL}/:id`} exact>
-          <GameItemPage/>
+          <GameItemPage />
         </Route>
         <Route path={ERROR_URL} exact>
-          <InfoPage variant={InfoPageVariant.Error}/>
+          <InfoPage variant={InfoPageVariant.Error} />
         </Route>
         <Route path={SUCCESS_URL} exact>
-          <InfoPage variant={InfoPageVariant.Success}/>
+          <InfoPage variant={InfoPageVariant.Success} />
         </Route>
         <Route path={REGISTER_URL} exact>
-          <AuthPage variant={AuthPageVariant.Reg}/>
+          <AuthPage variant={AuthPageVariant.Reg} />
         </Route>
         <Route path={SINGIN_URL} exact>
-          <AuthPage variant={AuthPageVariant.Sign}/>
+          <AuthPage variant={AuthPageVariant.Sign} />
         </Route>
         <Route path={CONTACT_URL} exact>
-          <ContactPage/>
+          <ContactPage />
         </Route>
         <Route path={PROFILE_URL} exact>
-          <ProfilePage/>
+          <ProfilePage />
         </Route>
         <Route path={FINANCE_URL} exact>
-          <FinancePage/>
+          <FinancePage />
         </Route>
         <Route path={BUY_URL} exact>
-          <BuyPage/>
-        </Route>  
-        <Route path={COMUNITY_URL} exact>
-          <ComunityPage variant={ComunityPageVariant.NoChat}/>
+          <BuyPage />
         </Route>
-        <Route path={COMUNITY_URL+'/:id'} exact>
-          <ComunityPage variant={ComunityPageVariant.Chat}/>
+        <Route path={COMUNITY_URL} exact>
+          <ComunityPage variant={ComunityPageVariant.NoChat} />
+        </Route>
+        <Route path={COMUNITY_URL + '/:id'} exact>
+          <ComunityPage variant={ComunityPageVariant.Chat} />
         </Route>
         <Route path={SETTINGS_URL} exact>
-          <SettingsPage/>
+          <SettingsPage />
         </Route>
         <Route path={`${ORDER_URL}/:id`} exact>
-          <OrderPage/>
+          <OrderPage />
         </Route>
         <Route path={COMFIRM_URL} exact>
-          <OrderConfirmPage/>
+          <OrderConfirmPage />
         </Route>
         <Route path='*'>
           <NotFound />
         </Route>
       </Switch>
-      <Footer/>
-  </div>
- }
+      <Footer />
+    </div>
+  }
   return (
     <Router>
-      <NavigationContainer/>
+      <NavigationContainer />
     </Router>
   );
 }

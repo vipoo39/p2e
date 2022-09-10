@@ -29,7 +29,7 @@ export default function OrderPage() {
             <Breadcrumbs />
             <div className={styles.title}>{location.state.game || ''}</div>
             <div className={styles.content}>
-                <div className={styles.info}>
+                <div>
                     <div className={styles.table}>
                         <div className={styles.tableHeader}>
                             <span>Игра:</span>
@@ -74,8 +74,8 @@ export default function OrderPage() {
                             Купить
                         </Link>
                     </div>
-                    <HistoryReview />
                 </div>
+                <HistoryReview />
                 <div className={styles.chat}>
                     <div className={styles.chatHeader}>
                         <img src={location.state.avatar} alt='avatar' />
