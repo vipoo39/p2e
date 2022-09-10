@@ -12,10 +12,6 @@
     margin-bottom: 10px;
 }
 
-.mob{
-    display: none;
-}
-
 .header, .item{
     padding: 0px 20px;
     display: flex;
@@ -194,18 +190,6 @@
 }
 
 @media(max-width: 1000px){
-    .mob{
-        width: 100%;
-        display: block;
-        margin-bottom: 5px;
-
-        span{
-            font-size: 11px;
-            color:rgba(255,255,255, 0.54);
-            margin-right: 5px;
-        }
-    }
-
     .avatar{
         flex-wrap: wrap;
     }
