@@ -17,5 +17,9 @@
         width: 100%;
         color: #FFFFFF;
         max-width: 230px;
+        &:hover {
+            border-color: var(--active);
+            opacity: 1!important;
+        }
     }
 }

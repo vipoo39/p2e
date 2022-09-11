@@ -31,7 +31,7 @@
 
 .item{
     width: 150px;
-    padding: 10px;
+    padding: 7px 14px;
     background: #1B1B1B;
     border-radius: 10px;
     transition: all .3s;
@@ -40,12 +40,11 @@
     font-family: 'Inter';
     font-weight: 400;
     font-size: 14px;
-    line-height: 22px;
-    text-transform: uppercase;
     text-align: center;
-
-    &:hover{
-        background: #0C6515;
+    border: 1px solid transparent;
+    &:hover {
+        border-color: var(--active);
+        opacity: 1!important;
     }
 }
 
