@@ -1,35 +1,24 @@
 import styles from './AuthPage.module.scss'
 import InputIcon from './InputIcon'
-import { useState, useCallback, FormEvent, useRef, useEffect } from 'react'
+import { useState, useCallback, FormEvent, useRef } from 'react'
 import checkSubmit from '../../utils/checkSubmit'
-import Repatcha from 'react-recaptcha'
-
-const captchaProvidepProps = {
-    reCaptchaKey: '6Lf45-khAAAAANV4KuIUZPJFazWgJxz04WeGLR5v',
-}
+import Repatcha from 'react-google-recaptcha'
 
 export default function RegTab() {
-    // useEffect(() => {
-    //     let script = document.createElement('script');
-    //     script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6Lf45-khAAAAANV4KuIUZPJFazWgJxz04WeGLR5v';
-    //     script.id = 'captcha'
-    //     document.head.appendChild(script)
-    //     return () => {
-    //         script.remove()
-    //     }
-    // }, [])
 
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
     const [passT, setPassT] = useState('')
     const [pass, setPass] = useState('')
     const [err, setErr] = useState('')
-    const [TOUR, setTOUR] = useState<'true' | 'false'>('true') //terms of the user afteement
+    const [TOUR, setTOUR] = useState<'true' | 'false'>('false') //terms of the user afteement
     const ref = useRef<HTMLFormElement>(null)
 
     const [captchaVerify, setCaptchaVerify] = useState(false)
-    const handleCaptchaVerify = useCallback((res: string) => {
-        res && setCaptchaVerify(true)
+    const captchaRef = useRef<any>(null)
+    const handleCaptchaVerify = useCallback((token: string | null) => {
+        if (token === null) setCaptchaVerify(false);
+        token && setCaptchaVerify(true)
     }, []);
 
     const handleSubmit = useCallback((event: FormEvent) => {
@@ -45,8 +34,15 @@ export default function RegTab() {
             mResp.status &&
             pass === passT && TOURResp.status && captchaVerify
         ) {
-            let obj = { name, mail, pass }
+            let obj = { name, email: mail, pass }
             setErr('')
+            setName('')
+            setMail('')
+            setPassT('')
+            setPass('')
+            setTOUR('false')
+            setCaptchaVerify(false)
+            captchaRef.current?.reset && captchaRef.current?.reset()
             console.log(obj)
         } else {
             setErr(
@@ -59,7 +55,8 @@ export default function RegTab() {
                 'Что-то пошло не так...'
             )
         }
-    }, [name, checkSubmit, mail, passT, pass, TOUR])
+    }, [name, checkSubmit, mail, passT, pass, TOUR, captchaVerify])
+
     return (
 
         <form className={styles.body} onSubmit={handleSubmit} ref={ref}>
@@ -95,7 +92,7 @@ export default function RegTab() {
                 <input onChange={() => setTOUR(prev => prev === 'false' ? 'true' : 'false')} checked={TOUR === 'true'} type='checkbox' className={styles.radio} id='radio' />
                 <label htmlFor='radio' style={{ fontSize: 10 }}>Я прочитал(а) и принимаю условия пользовательсткого соглашения</label>
             </div>
-            <Repatcha theme='dark' badge='bottomleft' sitekey='6Lf45-khAAAAAHWwYMSITMzsERDQl0SfI9YbKC2K' onloadCallback={() => console.log('loaded')} verifyCallback={handleCaptchaVerify} />
+            <Repatcha ref={captchaRef} onChange={handleCaptchaVerify} size={window.innerWidth <= 400 ? 'compact' : 'normal'} theme='dark' hl='ru' sitekey={'6LcF4-whAAAAAMUm1K7CQkl04fG7f2yOxDPzmeaQ'} />
             <button className={styles.btn} style={{ marginBottom: 0 }}>Регистрация</button>
         </form>
 

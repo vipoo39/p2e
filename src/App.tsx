@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { HashRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -19,7 +19,6 @@ import OrderPage from './pages/OrderPage/OrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.scss';
-import { games, historyReviewMock, lootMock, mockBuy, mockChatUsers, mockFinance } from './utils/mockData';
 
 function App() {
   const NavigationContainer = () => {
@@ -32,20 +31,7 @@ function App() {
       location.pathname === BUY_URL
       , [location.pathname])
     const [showMenu, setIsShowMenu] = useState(false)
-    
-    useEffect(() => {
-      let pathname = location.pathname
-      setTimeout(() => {
-        let captcha = document.getElementsByClassName('grecaptcha-badge')[0] as Element | undefined
-        if ((pathname.includes('login') || pathname.includes('registrate')) && captcha !== undefined) {
-          captcha?.classList.remove('captcha_hide')
-          captcha?.classList.add('captcha_show')
-        } else {
-          captcha?.classList.remove('captcha_show')
-          captcha?.classList.add('captcha_hide')
-        }
-      }, 100)
-    }, [location])
+
     return <div className="App"
     // style={showMenu ? { left: '-80vw'} : {}}
     >

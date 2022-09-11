@@ -1,12 +1,8 @@
 import styles from './AuthPage.module.scss'
 import InputIcon from './InputIcon'
 import {useState, useCallback, FormEvent, useRef} from 'react'
-import user from '../../assets/man.svg'
-import lock from '../../assets/lock.svg'
-import google from '../../assets/google.svg'
-import vk from '../../assets/vk.svg'
-import steam from '../../assets/steam.svg'
 import checkSubmit from '../../utils/checkSubmit';
+import Repatcha from 'react-google-recaptcha'
 
 export default function SignTab(){
     const [email, setEmail] = useState('')
@@ -15,16 +11,35 @@ export default function SignTab(){
     const [rememberMe, setRememberMe] = useState(false)
     const ref = useRef<HTMLFormElement>(null)
 
+    const [captchaVerify, setCaptchaVerify] = useState(false)
+    const captchaRef = useRef<any>(null)
+    const handleCaptchaVerify = useCallback((token: string | null) => {
+        if (token === null) setCaptchaVerify(false);
+        setCaptchaVerify(true)
+    }, []);
+
     const handleSubmit = useCallback((event: FormEvent) =>  {
         event.preventDefault()
-        if(checkSubmit('email', email).status && checkSubmit('passwordL', pass).status){
+        const mResp = checkSubmit('mail', email)
+        const PLResp = checkSubmit('passwordL', pass)
+
+        if(mResp.status && PLResp.status && captchaVerify){
             let obj = {email, pass, rememberMe}
             setErr('')
+            setEmail('')
+            setPass('')
+            setRememberMe(false)
+            setCaptchaVerify(false)
+            captchaRef.current?.reset && captchaRef.current?.reset()
             console.log(obj)
         } else {
             setErr( !checkSubmit('email', email).status ? checkSubmit('email', email).text  : checkSubmit('passwordL', pass).text  )
+            setErr( (!mResp.status && mResp.text) ||
+            (!PLResp.status && PLResp.text) ||
+            (!captchaVerify && 'Вы должны пройти капчу') ||
+            'Что-то пошло не так...')
         }
-    }, [checkSubmit, email, pass, rememberMe])
+    }, [checkSubmit, email, pass, rememberMe, captchaVerify])
     return(
         <form className={styles.body} onSubmit={handleSubmit} ref={ref}>
             {err !== '' && <div className={styles.err}>{err}</div>}
@@ -46,6 +61,7 @@ export default function SignTab(){
                 <input checked={rememberMe} onChange={() => setRememberMe(prev => !prev)} type='checkbox' className={styles.radio} id='radio' />
                 <label htmlFor='radio'>Запомнить меня</label>
             </div>
+            <Repatcha ref={captchaRef} onChange={handleCaptchaVerify} size={window.innerWidth <= 400 ? 'compact' : 'normal'} theme='dark' hl='ru' sitekey={'6LcF4-whAAAAAMUm1K7CQkl04fG7f2yOxDPzmeaQ'} />
             <button className={styles.btn}  style={{marginBottom: 0}}>Войти</button>
         </form>
     )
