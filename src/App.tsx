@@ -46,13 +46,6 @@ function App() {
         }
       }, 100)
     }, [location])
-    console.log(JSON.stringify(games))
-    console.log(JSON.stringify(lootMock))
-    console.log(JSON.stringify(mockChatUsers))
-    console.log(JSON.stringify(mockBuy))
-    console.log(JSON.stringify(mockFinance))
-    console.log(JSON.stringify(historyReviewMock))
-    console.log(JSON.stringify(mockChatUsers))
     return <div className="App"
     // style={showMenu ? { left: '-80vw'} : {}}
     >
