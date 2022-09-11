@@ -19,6 +19,7 @@ import OrderPage from './pages/OrderPage/OrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.scss';
+import { games, historyReviewMock, lootMock, mockBuy, mockChatUsers, mockFinance } from './utils/mockData';
 
 function App() {
   const NavigationContainer = () => {
@@ -36,7 +37,6 @@ function App() {
       let pathname = location.pathname
       setTimeout(() => {
         let captcha = document.getElementsByClassName('grecaptcha-badge')[0] as Element | undefined
-        console.log(captcha)
         if ((pathname.includes('login') || pathname.includes('registrate')) && captcha !== undefined) {
           captcha?.classList.remove('captcha_hide')
           captcha?.classList.add('captcha_show')
@@ -46,7 +46,13 @@ function App() {
         }
       }, 100)
     }, [location])
-
+    console.log(JSON.stringify(games))
+    console.log(JSON.stringify(lootMock))
+    console.log(JSON.stringify(mockChatUsers))
+    console.log(JSON.stringify(mockBuy))
+    console.log(JSON.stringify(mockFinance))
+    console.log(JSON.stringify(historyReviewMock))
+    console.log(JSON.stringify(mockChatUsers))
     return <div className="App"
     // style={showMenu ? { left: '-80vw'} : {}}
     >
