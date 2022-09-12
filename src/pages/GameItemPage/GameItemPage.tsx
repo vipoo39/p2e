@@ -1,5 +1,5 @@
 import { accountsMock, games, itemsMock, kinahMock, servicesMock } from "../../utils/mockData"
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import Card from "./components/Card/Card";
 import styles from './GameItemPage.module.scss'
 import Table from "./components/Table/Table";
@@ -15,6 +15,13 @@ export default function GameItemPage() {
     const item = useMemo(() => games.filter(item => pathname.includes(item.name.replace(/%20/, ' ')))[0], [pathname])
     useBreadcrumbs({name: item.name, link: `${GAMES_URL}/${item.name}`})
     let tags = item.tags
+
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [])
 
     return (
         <div>

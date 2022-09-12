@@ -86,6 +86,9 @@ function App() {
         <Route path={`${ORDER_URL}/:game/:category/:userId`} exact>
           <OrderPage />
         </Route>
+        <Route path={`${ORDER_URL}/:game/:userId`} exact>
+          <OrderPage />
+        </Route>
         <Route path={COMFIRM_URL} exact>
           <OrderConfirmPage />
         </Route>
