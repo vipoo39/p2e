@@ -21,9 +21,9 @@ export default function GameItemPage() {
             <Breadcrumbs />
             <Card {...item} />
             <Switch>
-                {/* <Route exact>
+                <Route path={`${GAMES_URL}/${item.name}`} exact>
                     <Table items={kinahMock} game={item.name} />
-                </Route> */}
+                </Route>
                 {tags.en.split(',').map((t, index) => {
                     return <Route key={index} path={`${GAMES_URL}/${item.name}/${t.replace(/\s+/g, '').toLowerCase()}`}>
                         <Table items={pathname.includes('kinah') ? kinahMock : pathname.includes('accounts') ? accountsMock : pathname.includes('items') ? itemsMock : servicesMock} game={item.name} />
