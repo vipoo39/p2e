@@ -1,6 +1,7 @@
 import styles from './Table.module.scss'
 import { ORDER_URL } from '../../../../utils/links'
 import { Link, useLocation } from 'react-router-dom';
+import { BreadcrumbsItemType } from '../../../../redux/reducers/breadcrumbsReducer';
 
 export type TableItemProps = {
     server: string;
@@ -15,16 +16,17 @@ export type TableItemProps = {
     game: string;
     id: string;
     online: string;
+    category: BreadcrumbsItemType | null;
 }
 
-export default function TableItem({ id, server, game, side, description, nikname, avatar, rate, review, count, price, online }: TableItemProps) {
+export default function TableItem({ id, server, game, side, description, nikname, avatar, rate, review, count, price, online, category }: TableItemProps) {
     const { pathname } = useLocation()
     let orderUrl = pathname.replace('/game', ORDER_URL)    
 
     return (
         <Link
             className={styles.item}
-            to={{ pathname: `${orderUrl}/${id}`, state: { nikname, avatar, server, side, count, game, online } }}
+            to={{ pathname: `${orderUrl}/${id}`, state: { nikname, avatar, server, side, count, game, online, back: id, category } }}
         >
             <div className={styles.server}>{server}</div>
             <div className={styles.side}>{side}</div>

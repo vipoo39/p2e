@@ -13,7 +13,7 @@ import { GAMES_URL } from "../../utils/links";
 export default function GameItemPage() {
     const { pathname } = useLocation()
     const item = useMemo(() => games.filter(item => pathname.includes(item.name.replace(/%20/, ' ')))[0], [pathname])
-    // useBreadcrumbs({name: item.name, link: `/game/${item.id}`})
+    useBreadcrumbs({name: item.name, link: `${GAMES_URL}/${item.name}`})
     let tags = item.tags
 
     return (

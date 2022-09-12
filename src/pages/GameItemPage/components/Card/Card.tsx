@@ -23,7 +23,7 @@ export default function Card({ imgBig, name, description, tags }: CardProps) {
                     {
                         tags.en.split(',').map((item, index) => (
                             <NavLink
-                                className={pathname.includes(item.replace(/\s+/g, '').toLowerCase()) ? `${styles.item} ${styles.itemActive}` : styles.item}
+                                className={(pathname.includes(item.replace(/\s+/g, '').toLowerCase()) || (pathname === `${GAMES_URL}/${name}` && index === 0)) ? `${styles.item} ${styles.itemActive}` : styles.item}
                                 key={index}
                                 to={`${GAMES_URL}/${name}/${item.replace(/\s+/g, '').toLowerCase()}`}
                             >

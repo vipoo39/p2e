@@ -4,6 +4,7 @@ import TableItem from './TableItem';
 import { TableItemName } from './TableItemName';
 import { accountsMock, itemsMock, kinahMock, servicesMock } from '../../../../utils/mockData';
 import { useLocation } from 'react-router-dom';
+import { useBreadcrumbs } from './../../../../hooks/useBreadcrumbs';
 
 export type TableProps = {
     game: string;
@@ -15,9 +16,10 @@ export type TableItemKeys = keyof TableFiltersType
 
 export default function Table(props: TableProps) {
     const { pathname } = useLocation()
+    let category = pathname.includes('kinah') ? {name: 'Кинары', link: pathname} : pathname.includes('accounts') ? {name: 'Аккаунты', link: pathname} : pathname.includes('items') ? {name: 'Предметы', link: pathname} : pathname.includes('services') ? {name: 'Услуги', link: pathname} : null
     const [filters, setFilters] = useState<TableFiltersType>({} as TableFiltersType)
     const [items, setItems] = useState(props.items)
-
+    
     const [maxLvl, setMaxLvl] = useState('')
     const [minLvl, setMinLvl] = useState('')
     const handleLvlBlur = (type: 'max' | 'min') => {
@@ -61,7 +63,7 @@ export default function Table(props: TableProps) {
         })
         setItems(newItems)
     }, [filters])
-
+    useBreadcrumbs(category)
     const getUniqeItems = (filterKey: TableItemKeys) => {
         //@ts-ignore
         return props.items.filter((value, index, self) => index === self.findIndex((t) => t[filterKey] === value[filterKey])).map(f => f[filterKey])
@@ -91,7 +93,7 @@ export default function Table(props: TableProps) {
             <div className={styles.list}>
                 {
                     items.map(item => (
-                        <TableItem key={item.id} {...props} {...item} />
+                        <TableItem category={category} key={item.id} {...props} {...item} />
                     ))
                 }
                 {items.length === 0 &&
