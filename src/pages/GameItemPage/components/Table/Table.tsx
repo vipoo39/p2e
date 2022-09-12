@@ -18,8 +18,8 @@ export type TableItemKeys = keyof TableFiltersType
 export default function Table(props: TableProps) {
     const { pathname } = useLocation()
     let category = pathname.includes('kinah') ? {name: 'Кинары', link: pathname} : pathname.includes('accounts') ? {name: 'Аккаунты', link: pathname} : pathname.includes('items') ? {name: 'Предметы', link: pathname} : pathname.includes('services') ? {name: 'Услуги', link: pathname} : null
-    //@ts-ignore
-    useBreadcrumbs([{name: props.game, link: `${GAMES_URL}/${props.game}`}, {...category}].filter(i => i !== null))
+    // @ts-ignore
+    useBreadcrumbs([{name: props.game, link: `${GAMES_URL}/${props.game}`}, category].filter(i => i !== null))
     const [filters, setFilters] = useState<TableFiltersType>({} as TableFiltersType)
     const [items, setItems] = useState(props.items)
     

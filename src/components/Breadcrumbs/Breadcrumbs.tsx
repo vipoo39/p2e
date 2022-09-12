@@ -27,7 +27,7 @@ const Item: React.FC<ItemType> = ({ item, index }) => {
 }
 
 export const Breadcrumbs: React.FC = () => {
-    let items = useSelector(selectBreadcrumbItems).map((i, index) => <Item index={index + 1} item={i} key={i.name} />)
+    let items = useSelector(selectBreadcrumbItems).map((i, index) => <Item index={index + 1} item={i} key={index} />)
 
     return <ul className={styles.breadcrumbs}>
         <Item index={0} item={{ name: 'Главная', link: '/' }} />
