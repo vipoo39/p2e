@@ -3,7 +3,6 @@ import { useMemo, useEffect } from 'react';
 import Card from "./components/Card/Card";
 import styles from './GameItemPage.module.scss'
 import Table from "./components/Table/Table";
-import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
 import { Breadcrumbs } from "../../components/Breadcrumbs/Breadcrumbs";
 import { ExtraText } from "./components/ExtraText/ExtraText";
 import { Route, Switch, useLocation } from 'react-router-dom';
@@ -13,7 +12,6 @@ import { GAMES_URL } from "../../utils/links";
 export default function GameItemPage() {
     const { pathname } = useLocation()
     const item = useMemo(() => games.filter(item => pathname.includes(item.name.replace(/%20/, ' ')))[0], [pathname])
-    useBreadcrumbs({name: item.name, link: `${GAMES_URL}/${item.name}`})
     let tags = item.tags
 
     useEffect(() => {
