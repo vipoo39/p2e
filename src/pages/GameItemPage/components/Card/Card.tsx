@@ -8,7 +8,7 @@ export type CardProps = typeof games[0]
 
 export default function Card({ imgBig, name, description, tags }: CardProps) {
     const { pathname } = useLocation()
-    let sellItemName = pathname.includes('kinah') ? 'валюту' : pathname.includes('accounts') ? 'аккаунт' : pathname.includes('items') ? 'предметы' : 'услуги'
+    let sellItemName = pathname.includes('kinah') ? 'валюту' : pathname.includes('accounts') ? 'аккаунт' : pathname.includes('items') ? 'предметы' : pathname.includes('services') ? 'услуги' : 'валюту'
 
     return (
         <div className={styles.container}>
