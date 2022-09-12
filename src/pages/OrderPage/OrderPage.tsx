@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router'
 import Input from './Input';
 import styles from './OrderPage.module.scss'
@@ -18,6 +18,13 @@ export default function OrderPage() {
     const [count, setCount] = useState('0')
     const [chat, updateChat] = useState<chatType[]>([])
     const [mess, setMess] = useState('')
+
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [])
 
     if (!!!location.state) {
         history.replace({ pathname: MAIN_URL })

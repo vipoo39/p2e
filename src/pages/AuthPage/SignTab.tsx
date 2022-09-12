@@ -3,8 +3,13 @@ import InputIcon from './InputIcon'
 import {useState, useCallback, FormEvent, useRef} from 'react'
 import checkSubmit from '../../utils/checkSubmit';
 import Repatcha from 'react-google-recaptcha'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Toastify } from '../../components/Toastify/Toastify';
 
 export default function SignTab(){
+    const [toastifyStatus, setToastifyStatus] = useState<'success' | 'error'>('success')
+
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [err, setErr] = useState('')
@@ -30,14 +35,17 @@ export default function SignTab(){
             setPass('')
             setRememberMe(false)
             setCaptchaVerify(false)
+            setToastifyStatus('success')
             captchaRef.current?.reset && captchaRef.current?.reset()
+            toast('Успех')
             console.log(obj)
         } else {
-            setErr( !checkSubmit('email', email).status ? checkSubmit('email', email).text  : checkSubmit('passwordL', pass).text  )
             setErr( (!mResp.status && mResp.text) ||
             (!PLResp.status && PLResp.text) ||
             (!captchaVerify && 'Вы должны пройти капчу') ||
             'Что-то пошло не так...')
+            setToastifyStatus('error')
+            toast('Неправильная почта или пароль')
         }
     }, [checkSubmit, email, pass, rememberMe, captchaVerify])
     return(
@@ -63,6 +71,7 @@ export default function SignTab(){
             </div>
             <Repatcha ref={captchaRef} onChange={handleCaptchaVerify} size={window.innerWidth <= 400 ? 'compact' : 'normal'} theme='dark' hl='ru' sitekey={'6LcF4-whAAAAAMUm1K7CQkl04fG7f2yOxDPzmeaQ'} />
             <button className={styles.btn}  style={{marginBottom: 0}}>Войти</button>
+            <Toastify status={toastifyStatus} />
         </form>
     )
 }

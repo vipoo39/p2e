@@ -1,72 +1,85 @@
 import styles from './ContactPage.module.scss'
 import { useState, useCallback, FormEvent, useRef } from 'react'
 import checkSubmit from '../../utils/checkSubmit';
+import { Toastify } from '../../components/Toastify/Toastify';
+import { toast } from 'react-toastify';
 
-export default function ContactPage(){
+export default function ContactPage() {
+    const [toastifyStatus, setToastifyStatus] = useState<'success' | 'error'>('success')
+
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
     const [tel, setTel] = useState('')
     const [mess, setMess] = useState('')
     const [err, setErr] = useState('')
     const ref = useRef<HTMLFormElement>(null)
-    const handleSubmit = useCallback((event: FormEvent) =>  {
+    const handleSubmit = useCallback((event: FormEvent) => {
         event.preventDefault()
-        const nResp =  checkSubmit('name', name)
-        const mResp =  checkSubmit('mail', mail)
-        const pResp =  checkSubmit('tel', tel)
-        const ptResp =  checkSubmit('text', mess)
-        if(nResp.status && 
+        const nResp = checkSubmit('name', name)
+        const mResp = checkSubmit('mail', mail)
+        const pResp = checkSubmit('tel', tel)
+        const ptResp = checkSubmit('text', mess)
+        if (nResp.status &&
             pResp.status &&
-            ptResp.status && 
-            mResp.status 
-        ){
+            ptResp.status &&
+            mResp.status
+        ) {
             setErr('')
-            let obj = {name, mail, tel, mess}
+            setName('')
+            setMail('')
+            setTel('')
+            setMess('')
+            setToastifyStatus('success')
+            toast('Успех!')
+            let obj = { name, mail, tel, mess }
             console.log(obj)
         } else {
-            setErr( 
+            setErr(
                 (!nResp.status && nResp.text) ||
                 (!pResp.status && pResp.text) ||
                 (!ptResp.status && ptResp.text) ||
                 (!mResp.status && mResp.text) ||
                 'ошибка'
-             )
+            )
+            setToastifyStatus('error')
+            toast('Что-то пошло не так')
         }
     }, [checkSubmit, name, mail, tel, mess])
-    return(
+    return (
         <div className={styles.container}>
             <form className={styles.body} onSubmit={handleSubmit} ref={ref}>
                 <div className={styles.title}>Форма обратной связи</div>
                 {err !== '' && <div className={styles.err}>{err}</div>}
-                <input 
-                    className={styles.input} 
+                <input
+                    className={styles.input}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder='Введите ваше имя'
                 />
-                <input 
-                    className={styles.input} 
+                <input
+                    className={styles.input}
                     value={mail}
                     onChange={(e) => setMail(e.target.value)}
                     type='email'
                     placeholder='Введите свой E-mail'
                 />
-                <input 
-                    className={styles.input} 
+                <input
+                    className={styles.input}
                     value={tel}
                     onChange={(e) => setTel(e.target.value)}
                     type='phone'
                     placeholder='Введите номер телефона'
                 />
-                <textarea 
+                <textarea
                     rows={4}
-                    className={styles.input} 
+                    className={styles.input}
                     value={mess}
                     onChange={(e) => setMess(e.target.value)}
                     placeholder='Введите сообщение'
                 />
                 <button className={styles.btn}>Отправить</button>
             </form>
+            <Toastify status={toastifyStatus} />
         </div>
     )
 }

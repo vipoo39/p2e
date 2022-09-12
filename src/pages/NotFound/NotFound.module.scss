@@ -4,6 +4,11 @@
     align-items: center;
     justify-content: flex-start;
     row-gap: 1rem;
+    .errorImg {
+        width: 210px;
+        height: 110px;
+        object-fit: cover;
+    }
     .heading {
         color: white;
         font-size: 40px;

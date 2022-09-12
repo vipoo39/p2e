@@ -73,29 +73,20 @@
 }
 
 .img{
-    max-width: 100px;
+    max-width: 70px;
 }
 
 .container{
-    margin: 57px auto;
+    margin: 54px 0;
     @media screen and (max-width: 1000px) {
-        margin: 37px auto;
+        margin: 37px 0;
     }
     @media screen and (max-width: 730px) {
         margin-left: 0;
         margin-right: 0;
     }
     & > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        width: 100%;
-        flex-wrap: wrap;
-        max-width: 830px;
-        @media screen and (max-width: 1000px) {
-            max-width: 700px;
-        }
+        padding-bottom: 2px;
         & > div:nth-child(2n) {
             padding-top: 3px;
         }
@@ -109,30 +100,36 @@
 
 .item{
     text-align: center;
-    display: flex;
+    display: flex!important;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    gap: 16px;
+    margin: 3px 0;
+    &:hover{
+        & > a > img:nth-child(2n) {
+            animation: bAnim 0.4s ease infinite;
+        }
+
+        & > a > img:nth-child(3n) {
+            animation: gAnim 0.4s ease infinite;
+        }
+    }
+    @media screen and (max-width: 1000px) {
+        margin-bottom: 15px;
+    }
     & > a {
         transition: box-shadow .3s;
         position: relative;
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         display: block;
+        &:hover {
+            opacity: 1!important;
+        }
         img{
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
-        }
-    
-        &:hover{
-            & > img:nth-child(2n) {
-                animation: bAnim 0.4s ease infinite;
-            }
-    
-            & > img:nth-child(3n) {
-                animation: gAnim 0.4s ease infinite;
-            }
         }
     }
 }
@@ -141,6 +138,4 @@
     font-size: 16px;
     color: #fff;
     font-weight: 500;
-    margin-top: 20px;
-
 }

@@ -52,7 +52,7 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
         <header className={styles.container}>
             <div className={`${styles.top} ${isMobileSearch ? styles.top_search : ''}`} ref={refHeader}>
                 <Logo className={styles.logo} />
-                {(pathname === '/') ? isMobileSearch
+                {(pathname === '/' || pathname.includes('game')) ? isMobileSearch
                     ? <Search className={styles.search} onBlur={() => setIsMobileSearch(false)} value={searchValue} onValueChange={setSearchvalue} />
                     : <img src={searchIcon} className={styles.openSearchIcon} onClick={() => setIsMobileSearch(true)} alt='search' />
                     : undefined
@@ -81,7 +81,7 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
                             Контакты
                         </Link>
                     </div>
-                    {(pathname === '/') ? isPcSearch
+                    {(pathname === '/' || pathname.includes('game')) ? isPcSearch
                         ? <Search className={styles.search_menu} onBlur={() => setIsPCSearch(false)} value={searchValue} onValueChange={setSearchvalue} />
                         : <img src={searchIcon} className={styles.openSearchIcon_menu} onClick={() => setIsPCSearch(true)} alt='search' />
                         : undefined

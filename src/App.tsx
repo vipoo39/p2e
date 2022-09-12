@@ -19,6 +19,7 @@ import OrderPage from './pages/OrderPage/OrderPage';
 import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.scss';
+import { ArrowUp } from './pages/OrderPage/ArrowUp';
 
 function App() {
   const NavigationContainer = () => {
@@ -43,7 +44,10 @@ function App() {
         <Route path={SERVICE_URL} exact>
           <ServicePage />
         </Route>
-        <Route path={`${GAMES_URL}/:id`} exact>
+        <Route path={`${GAMES_URL}/:name`} exact>
+          <GameItemPage />
+        </Route>
+        <Route path={`${GAMES_URL}/:name/:category`} exact>
           <GameItemPage />
         </Route>
         <Route path={ERROR_URL} exact>
@@ -79,7 +83,7 @@ function App() {
         <Route path={SETTINGS_URL} exact>
           <SettingsPage />
         </Route>
-        <Route path={`${ORDER_URL}/:id`} exact>
+        <Route path={`${ORDER_URL}/:game/:category/:userId`} exact>
           <OrderPage />
         </Route>
         <Route path={COMFIRM_URL} exact>
@@ -90,6 +94,7 @@ function App() {
         </Route>
       </Switch>
       <Footer />
+      <ArrowUp />
     </div>
   }
   return (

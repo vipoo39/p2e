@@ -6,7 +6,7 @@ export type SearchResultItemProps = {
     id: string;
     imgSmall: string;
     name: string;
-    tags: string | string[]
+    tags: {ru: string, en: string}
 }
 
 export default function SearchResultItem({id, imgSmall, name, tags} : SearchResultItemProps){
@@ -14,11 +14,11 @@ export default function SearchResultItem({id, imgSmall, name, tags} : SearchResu
         <div  className={styles.item}>
             <img src={imgSmall} className={styles.itemImg} alt='avatar'/>
             <div>
-                <Link to={{pathname: `${GAMES_URL}/${id}`}} className={styles.itemName}>{name}</Link>
+                <Link to={{pathname: `${GAMES_URL}/${name}`}} className={styles.itemName}>{name}</Link>
                 <div className={styles.itemTags}>
                     {
-                        typeof(tags) === 'string' && tags.split(',').map((_, index, arr) => (
-                            <Link to={{pathname: `${GAMES_URL}/${id}`}} key={_}>{_}{index !== (arr.length - 1)  && ', '}</Link>
+                        tags.en.split(',').map((tag, index, arr) => (
+                            <Link to={{pathname: `${GAMES_URL}/${name}/${tag.replace(/\s+/g, '').toLowerCase()}`}} key={index}>{tags.ru.split(',')[index]}{index !== (arr.length - 1)  && ', '}</Link>
                         ))
                     }
                 </div>

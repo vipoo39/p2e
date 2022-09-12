@@ -39,19 +39,3 @@ html, body{
         height: 60px;
     }
 }
-
-.letter{
-    position: fixed;
-
-    flex-direction: column;
-    z-index: 10;
-
-    gap: 3px;
-    top: 60px;
-    left: 5px;
-
-    & > div{
-        font-size: 11px;
-        line-height: 12px;
-    }
-}

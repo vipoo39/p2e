@@ -38,10 +38,9 @@
         font-weight: 500;
         padding: 7px 12px;
         position: relative;
-        background-color: transparent;
-        border: 1px solid var(--active);
+        background: var(--active);
         &:hover {
-            background: var(--active);
+            background: #0C6515;
             opacity: 1!important;
             // box-shadow: 4px 4px 4px rgba(0, 250, 25, 0.6);
         }

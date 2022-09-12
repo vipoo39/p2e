@@ -3,8 +3,11 @@ import InputIcon from './InputIcon'
 import { useState, useCallback, FormEvent, useRef } from 'react'
 import checkSubmit from '../../utils/checkSubmit'
 import Repatcha from 'react-google-recaptcha'
+import { Toastify } from './../../components/Toastify/Toastify';
+import { toast } from 'react-toastify';
 
 export default function RegTab() {
+    const [toastifyStatus, setToastifyStatus] = useState<'success' | 'error'>('success')
 
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
@@ -43,6 +46,8 @@ export default function RegTab() {
             setTOUR('false')
             setCaptchaVerify(false)
             captchaRef.current?.reset && captchaRef.current?.reset()
+            setToastifyStatus('success')
+            toast('Успех')
             console.log(obj)
         } else {
             setErr(
@@ -54,6 +59,8 @@ export default function RegTab() {
                 (!captchaVerify && 'Вы должны пройти капчу') ||
                 'Что-то пошло не так...'
             )
+            setToastifyStatus('error')
+            toast('Неправильная почта или пароль')
         }
     }, [name, checkSubmit, mail, passT, pass, TOUR, captchaVerify])
 
@@ -94,7 +101,7 @@ export default function RegTab() {
             </div>
             <Repatcha ref={captchaRef} onChange={handleCaptchaVerify} size={window.innerWidth <= 400 ? 'compact' : 'normal'} theme='dark' hl='ru' sitekey={'6LcF4-whAAAAAMUm1K7CQkl04fG7f2yOxDPzmeaQ'} />
             <button className={styles.btn} style={{ marginBottom: 0 }}>Регистрация</button>
+            <Toastify status={toastifyStatus} />
         </form>
-
     )
 }

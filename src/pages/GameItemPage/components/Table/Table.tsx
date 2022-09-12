@@ -1,36 +1,85 @@
 import styles from './Table.module.scss'
 import { useState, useEffect } from 'react';
-import { lootMock } from '../../../../utils/mockData';
 import TableItem from './TableItem';
 import { TableItemName } from './TableItemName';
+import { accountsMock, itemsMock, kinahMock, servicesMock } from '../../../../utils/mockData';
+import { useLocation } from 'react-router-dom';
 
 export type TableProps = {
     game: string;
-    category: string;
+    items: typeof kinahMock | typeof accountsMock | typeof itemsMock | typeof servicesMock
 }
 
-type ItemsType = typeof lootMock
-export type TableFiltersType = ItemsType[0]
+export type TableFiltersType = { [key: string]: string }
 export type TableItemKeys = keyof TableFiltersType
 
-export default function Table(props: TableProps){
+export default function Table(props: TableProps) {
+    const { pathname } = useLocation()
     const [filters, setFilters] = useState<TableFiltersType>({} as TableFiltersType)
-    const [items, setItems] = useState(lootMock)
+    const [items, setItems] = useState(props.items)
+
+    const [maxLvl, setMaxLvl] = useState('')
+    const [minLvl, setMinLvl] = useState('')
+    const handleLvlBlur = (type: 'max' | 'min') => {
+        if (type === 'max') {
+            //@ts-ignore
+            setFilters(prev => ({...prev, maxLvl}))
+        } else {
+            //@ts-ignore
+            setFilters(prev => ({...prev, minLvl }))
+        }
+    }
 
     useEffect(() => {
-        let newItems = lootMock.filter(i => {
+        let newItems = props.items.filter(i => {
             let filterKeys = Object.keys(filters) as TableItemKeys[]
-            return filterKeys.every(k => i[k] === filters[k])
+            return filterKeys.every(k => {
+                //@ts-ignore
+                if (k.includes('Lvl')) {
+                    if (k === 'maxLvl') {
+                        if (filters.minLvl !== undefined) {
+                            //@ts-ignore
+                            return i['lvl'] <= (Number(filters.maxLvl) || 999) && i['lvl'] >= (Number(filters.minLvl) || 0)
+                        } else {
+                            //@ts-ignore
+                            return i['lvl'] <= (Number(filters.maxLvl) || 999)
+                        }
+                    } else {
+                        if (filters.maxLvl !== undefined) {
+                            //@ts-ignore
+                            return i['lvl'] >= (Number(filters.minLvl) || 0) && i['lvl'] <= (Number(filters.maxLvl) || 999)
+                        } else {
+                            //@ts-ignore
+                            return i['lvl'] >= (Number(filters.minLvl) || 0)
+                        }
+                    }
+                } else {
+                    //@ts-ignore
+                    return i[k] === filters[k]
+                }
+            })
         })
         setItems(newItems)
     }, [filters])
 
     const getUniqeItems = (filterKey: TableItemKeys) => {
-        return lootMock.filter((value, index, self) => index === self.findIndex((t) => t[filterKey] === value[filterKey])).map(f => f[filterKey])
+        //@ts-ignore
+        return props.items.filter((value, index, self) => index === self.findIndex((t) => t[filterKey] === value[filterKey])).map(f => f[filterKey])
     }
-
-    return(
+    return (
         <div className={styles.table}>
+            <div className={styles.extraFilter}>
+                {pathname.includes('accounts') && <div className={styles.lvlFilter}>
+                    <p>Уровень</p>
+                    <input onBlur={() => handleLvlBlur('min')} value={minLvl} onChange={e => setMinLvl(e.target.value)} placeholder='мин.' />
+                    <input onBlur={() => handleLvlBlur('max')} value={maxLvl} onChange={e => setMaxLvl(e.target.value)} placeholder='макс.' />
+                </div>
+                }
+                {pathname.includes('items') && <TableItemName className={styles.headerServer} enName='type' name='Тип' items={getUniqeItems('type')} filters={filters} setNewFilter={setFilters} />}
+                {Object.keys(filters).length >= 2 && (
+                    <button className={styles.resetFilters} onClick={() => setFilters({})}>Сбросить</button>
+                )}
+            </div>
             <div className={styles.header}>
                 <TableItemName className={styles.headerServer} enName='server' name='Сервер' items={getUniqeItems('server')} filters={filters} setNewFilter={setFilters} />
                 <TableItemName className={styles.side} enName='side' name='Сторона' items={getUniqeItems('side')} filters={filters} setNewFilter={setFilters} />
@@ -42,7 +91,7 @@ export default function Table(props: TableProps){
             <div className={styles.list}>
                 {
                     items.map(item => (
-                        <TableItem key={item.id} {...props} {...item}/>
+                        <TableItem key={item.id} {...props} {...item} />
                     ))
                 }
                 {items.length === 0 &&

@@ -20,7 +20,6 @@ import instB from '../../assets/inst-bl.svg';
 export default function Footer(){
     return(
         <footer className={styles.container}>
-            <div className={styles.text}>&copy; Копирайт 2022</div>
             <div className={styles.groupLink}>
                 <Link to={{pathname: MAIN_URL}}>
                     Политика конфиденциальности
