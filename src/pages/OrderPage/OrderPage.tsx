@@ -12,7 +12,7 @@ import { BreadcrumbsItemType } from '../../redux/reducers/breadcrumbsReducer';
 import { GAMES_URL } from './../../utils/links';
 
 export default function OrderPage() {
-    const location = useLocation<{ back: string; game: string; avatar: string; nikname: string, online: string, category: BreadcrumbsItemType | null }>()
+    const location = useLocation<{ game: string; avatar: string; nikname: string, online: string, category: BreadcrumbsItemType | null }>()
     const history = useHistory()
     let breadcrumbItems = [{ name: location.state?.game, link: `${GAMES_URL}/${location.state?.game}` } || null, location.state?.category ? location.state?.category : null].filter(i => i !== null)
     //@ts-ignore

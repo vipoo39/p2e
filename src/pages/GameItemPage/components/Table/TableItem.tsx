@@ -26,7 +26,7 @@ export default function TableItem({ id, server, game, side, description, nikname
     return (
         <Link
             className={styles.item}
-            to={{ pathname: `${orderUrl}/${id}`, state: { nikname, avatar, server, side, count, game, online, back: id, category } }}
+            to={{ pathname: `${orderUrl}/${id}`, state: { nikname, avatar, server, side, count, game, online, category } }}
         >
             <div className={styles.server}>{server}</div>
             <div className={styles.side}>{side}</div>
