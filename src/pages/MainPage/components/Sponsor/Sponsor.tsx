@@ -23,84 +23,104 @@ export default function Sponsor() {
         <div className={styles.container}>
             <Slider slidesToShow={4} dots arrows={false} infinite={false} responsive={responsive}>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon1} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon1} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon1} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>SANDBOX</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon1} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon1} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon1} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>SANDBOX</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon2} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon2} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon2} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>Mines of Dalarnia</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon2} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon2} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon2} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>Mines of Dalarnia</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>SPLINTERLANDS</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>SPLINTERLANDS</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>Star Atlas</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>Star Atlas</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>SPLINTERLANDS</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>SPLINTERLANDS</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>Star Atlas</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>Star Atlas</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>Star Atlas</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>Star Atlas</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>SPLINTERLANDS</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>SPLINTERLANDS</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>Star Atlas</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon4} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon4} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>Star Atlas</div>
+                    </div>
                 </div>
                 <div className={styles.item}>
-                    <a>
-                        <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
-                        <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
-                    </a>
-                    <div className={styles.title}>SPLINTERLANDS</div>
+                    <div className={styles.inner}>
+                        <a>
+                            <img src={spon3} className={`${styles.img} ${styles.t}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.g}`} alt="sponsor" />
+                            <img src={spon3} className={`${styles.img} ${styles.b}`} alt="sponsor" />
+                        </a>
+                        <div className={styles.title}>SPLINTERLANDS</div>
+                    </div>
                 </div>
             </Slider>
         </div>
