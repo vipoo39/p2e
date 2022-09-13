@@ -201,6 +201,9 @@
             background: #0C6515;
             opacity: 1 !important;
         }
+        @media screen and (max-width: 1000px) {
+            max-width: none;
+        }
     }
 }
 
