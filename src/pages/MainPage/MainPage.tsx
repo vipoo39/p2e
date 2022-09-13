@@ -73,7 +73,6 @@ export default function MainPage() {
                     <SearchResultList letter='B' />
                     <SearchResultList letter='C' />
                     <SearchResultList letter='D' />
-                    <SearchResultList letter='E' />
                     <SearchResultList letter='F' />
                     <SearchResultList letter='G' />
                     <SearchResultList letter='H' />
