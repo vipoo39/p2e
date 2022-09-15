@@ -4,8 +4,6 @@
     float: left;
     margin-left: -25px;
     max-height: calc(100vh - 60px);
-    overflow-y: auto;
-    overflow-x: hidden;
     z-index: 10;
     top: 60px;
     &::-webkit-scrollbar {
