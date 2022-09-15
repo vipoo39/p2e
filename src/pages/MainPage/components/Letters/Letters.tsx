@@ -29,7 +29,7 @@ export default function Letters({ handleClick }: LettersProps) {
             window.addEventListener('scroll', handler)
             return () => window.removeEventListener('scroll', handler)
         }
-    }, [prevPos])
+    }, [prevPos, window.innerHeight])
 
     return (
         <div ref={containerRef} className={styles.container}>
