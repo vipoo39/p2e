@@ -4,7 +4,7 @@ import styles from './MainPage.module.scss'
 import SearchResultList from './components/SearchResult/SearchResultList';
 import FAQ from './components/FAQ/FAQ';
 import Sponsor from './components/Sponsor/Sponsor';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { lettersMock } from '../../utils/mockData';
 
 const isVisible = (elem: HTMLElement | null) => {

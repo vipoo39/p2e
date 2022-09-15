@@ -3,12 +3,8 @@
     width: 18px;
     float: left;
     margin-left: -25px;
-    max-height: calc(100vh - 60px);
     z-index: 10;
-    top: 60px;
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
+    transition: top 0.2s;
     .inner {
         display: flex;
         align-items: center;
