@@ -4,7 +4,7 @@ import Input from './Input';
 import styles from './OrderPage.module.scss'
 import Chat, { chatType } from '../../components/Chat/Chat';
 import { Link } from 'react-router-dom';
-import { COMFIRM_URL, MAIN_URL } from '../../utils/links';
+import { COMFIRM_URL, MAIN_URL, USER_URL } from '../../utils/links';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
 import { HistoryReview } from './HistoryReview';
@@ -12,7 +12,7 @@ import { BreadcrumbsItemType } from '../../redux/reducers/breadcrumbsReducer';
 import { GAMES_URL } from './../../utils/links';
 
 export default function OrderPage() {
-    const location = useLocation<{ game: string; avatar: string; nikname: string, online: string, category: BreadcrumbsItemType | null }>()
+    const location = useLocation<{ game: string; avatar: string; nikname: string, online: string, category: BreadcrumbsItemType | null, id: number }>()
     const history = useHistory()
     let breadcrumbItems = [{ name: location.state?.game, link: `${GAMES_URL}/${location.state?.game}` } || null, location.state?.category ? location.state?.category : null].filter(i => i !== null)
     //@ts-ignore
@@ -88,13 +88,15 @@ export default function OrderPage() {
                 </div>
                 <HistoryReview />
                 <div className={styles.chat}>
-                    <div className={styles.chatHeader}>
-                        <img src={location.state.avatar} alt='avatar' />
-                        <div>
-                            <div className={styles.chatName}>{location.state.nikname || 'nick'}</div>
-                            <div className={styles.chatStatus}>{location.state.online === 'Онлайн' ? 'online' : 'offline'}</div>
+                    <Link to={`${USER_URL}/${location.state.id}`}>
+                        <div className={styles.chatHeader}>
+                            <img src={location.state.avatar} alt='avatar' />
+                            <div>
+                                <div className={styles.chatName}>{location.state.nikname || 'nick'}</div>
+                                <div className={styles.chatStatus}>{location.state.online === 'Онлайн' ? 'online' : 'offline'}</div>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                     <Chat
                         value={mess}
                         onChange={setMess}

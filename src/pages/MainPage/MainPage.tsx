@@ -6,6 +6,7 @@ import FAQ from './components/FAQ/FAQ';
 import Sponsor from './components/Sponsor/Sponsor';
 import { useEffect, useState } from 'react';
 import { lettersMock } from '../../utils/mockData';
+import { useScrollDirection } from '../../hooks/useScrollDirection';
 
 const isVisible = (elem: HTMLElement | null) => {
     if (!elem) return
@@ -26,6 +27,7 @@ export default function MainPage() {
             behavior: 'smooth'
         });
     }
+    const show = useScrollDirection()
 
     useEffect(() => {
         const handle = () => {
@@ -38,7 +40,12 @@ export default function MainPage() {
                 let top = container.getBoundingClientRect().top
                 return { letter: l, top }
             })
-            let activeLetterTop = Math.max(...activeLetters.map(v => v.top))
+            let activeLetterTop: number
+            if (show) {
+                activeLetterTop = Math.max(...activeLetters.map(v => v.top))
+            } else {
+                activeLetterTop = activeLetters[0]?.top || 0
+            }
             let activeLetter = activeLetters.find(l => l.top === activeLetterTop)
 
             lettersMock.forEach(item => {
@@ -61,7 +68,7 @@ export default function MainPage() {
         window.addEventListener('scroll', handle)
 
         return () => window.removeEventListener('scroll', handle)
-    }, [])
+    }, [show])
 
     return (
         <>

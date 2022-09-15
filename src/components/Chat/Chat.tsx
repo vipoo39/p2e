@@ -7,6 +7,7 @@ export type ChatProps = {
     setChat: (ch: chatType[]) => void;
     chat: chatType[];
     style?: CSSProperties;
+    className?: string
 }
 
 export type chatType = {
@@ -14,7 +15,7 @@ export type chatType = {
     text: string;
 }
 
-export default function Chat({value, onChange, setChat, chat, style}: ChatProps){
+export default function Chat({value, onChange, setChat, chat, style, className}: ChatProps){
 
     const ref = useRef<HTMLInputElement>(null)
     const refChat = useRef<HTMLDivElement>(null)
@@ -37,7 +38,7 @@ export default function Chat({value, onChange, setChat, chat, style}: ChatProps)
         return () => window.removeEventListener('keypress', handle)
     }, [value])
     return(
-        <div className={styles.container} style={style}>
+        <div className={`${styles.container} ${className}`} style={style}>
             <div 
                 className={`${styles.chat} ${ chat.length === 0 && styles.chatEmpty}`} 
                 ref={refChat}

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { HashRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import { MAIN_URL, SERVICE_URL, GAMES_URL, COMFIRM_URL, ERROR_URL, ORDER_URL, SUCCESS_URL, REGISTER_URL, SINGIN_URL, CONTACT_URL, PROFILE_URL, FINANCE_URL, BUY_URL, COMUNITY_URL, SETTINGS_URL } from './utils/links';
+import { MAIN_URL, SERVICE_URL, GAMES_URL, COMFIRM_URL, ERROR_URL, ORDER_URL, SUCCESS_URL, REGISTER_URL, SINGIN_URL, CONTACT_URL, PROFILE_URL, FINANCE_URL, BUY_URL, COMUNITY_URL, SETTINGS_URL, USER_URL } from './utils/links';
 import './styles/App.scss';
 import ServicePage from './pages/ServicePage/SetvicePage';
 import MainPage from './pages/MainPage/MainPage';
@@ -20,6 +20,7 @@ import OrderConfirmPage from './pages/OrderConfirmPage/OrderConfirmPage';
 import { NotFound } from './pages/NotFound/NotFound';
 import './App.scss';
 import { ArrowUp } from './pages/OrderPage/ArrowUp';
+import { UserPage } from './pages/UserPage/UserPage';
 
 function App() {
   const NavigationContainer = () => {
@@ -91,6 +92,9 @@ function App() {
         </Route>
         <Route path={COMFIRM_URL} exact>
           <OrderConfirmPage />
+        </Route>
+        <Route path={`${USER_URL}/:id`} exact>
+          <UserPage />
         </Route>
         <Route path='*'>
           <NotFound />
