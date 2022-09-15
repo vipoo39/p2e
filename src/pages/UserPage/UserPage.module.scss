@@ -59,8 +59,10 @@ h5 {
         }
     }
     .reviews {
+        margin-bottom: 17px;
         @media screen and (max-width: 1000px) {
             grid-row: 4;
+            margin-bottom: 0;
         }
         .content {
             padding: 15px;

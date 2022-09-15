@@ -20,7 +20,7 @@ export const UserPage = () => {
     const openReviewsFilterRef = useRef<HTMLButtonElement>(null)
     const reviewFiltersRef = useRef<HTMLUListElement>(null)
     const [reviewItems, setReviewItems] = useState(user?.reviews)
-    const [reviewsPortion, setReviewsPortion] = useState(0)
+    const [reviewsPortion, setReviewsPortion] = useState(1)
     const [reviewStars, setReviewStars] = useState(0)
 
     const handeNewPortion = () => {
