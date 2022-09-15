@@ -1587,5 +1587,710 @@ export const mockUsers = [
                 avatar: avatar,
             },
         ]
-    }
+    },
+    {
+        id: 2,
+        name: 'User 1',
+        avatar: avatar,
+        online: false,
+        regDate: new Date('2004-03-12T12:15Z'),
+        offers: {
+            kinah: {
+                category: 'Кинары',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 1242
+                    },
+                    {
+                        description: 'Супер описание2',
+                        price: 55
+                    },
+                ]
+            },
+            accounts: {
+                category: 'Аккаунты',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                ]
+            }
+        },
+        reviews: [
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+        ]
+    },
+    {
+        id: 3,
+        name: 'User 1',
+        avatar: avatar,
+        online: false,
+        regDate: new Date('2004-03-12T12:15Z'),
+        offers: {
+            kinah: {
+                category: 'Кинары',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 1242
+                    },
+                    {
+                        description: 'Супер описание2',
+                        price: 55
+                    },
+                ]
+            },
+            accounts: {
+                category: 'Аккаунты',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                ]
+            }
+        },
+        reviews: [
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+        ]
+    },
+    {
+        id: 4,
+        name: 'User 1',
+        avatar: avatar,
+        online: false,
+        regDate: new Date('2004-03-12T12:15Z'),
+        offers: {
+            kinah: {
+                category: 'Кинары',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 1242
+                    },
+                    {
+                        description: 'Супер описание2',
+                        price: 55
+                    },
+                ]
+            },
+            accounts: {
+                category: 'Аккаунты',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                ]
+            }
+        },
+        reviews: [
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+        ]
+    },
+    {
+        id: 5,
+        name: 'User 1',
+        avatar: avatar,
+        online: false,
+        regDate: new Date('2004-03-12T12:15Z'),
+        offers: {
+            kinah: {
+                category: 'Кинары',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 1242
+                    },
+                    {
+                        description: 'Супер описание2',
+                        price: 55
+                    },
+                ]
+            },
+            accounts: {
+                category: 'Аккаунты',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                ]
+            }
+        },
+        reviews: [
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+        ]
+    },
+    {
+        id: 6,
+        name: 'User 1',
+        avatar: avatar,
+        online: false,
+        regDate: new Date('2004-03-12T12:15Z'),
+        offers: {
+            kinah: {
+                category: 'Кинары',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 1242
+                    },
+                    {
+                        description: 'Супер описание2',
+                        price: 55
+                    },
+                ]
+            },
+            accounts: {
+                category: 'Аккаунты',
+                items: [
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                    {
+                        description: 'Супер описание',
+                        price: 10000
+                    },
+                ]
+            }
+        },
+        reviews: [
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом году',
+                buyData: 'YouTube, 200 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'Сегодня',
+                buyData: 'YouTube, 100 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+            {
+                date: 'В этом месяце',
+                buyData: 'YouTube, 500 ₽',
+                description: 'Всё супер!',
+                stars: 5,
+                avatar: avatar,
+            },
+        ]
+    },
 ]
