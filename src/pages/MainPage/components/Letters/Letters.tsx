@@ -11,22 +11,24 @@ export default function Letters({ handleClick }: LettersProps) {
     const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const handler = () => {
-            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-            console.log(st > prevPos)
-            if (st > prevPos){
-                if (containerRef.current) {
-                    containerRef.current.style.top = '-100px'
+        if (containerRef?.current && window.innerHeight <= containerRef.current.clientHeight) {
+            const handler = () => {
+                var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                console.log(st > prevPos)
+                if (st > prevPos){
+                    if (containerRef.current) {
+                        containerRef.current.style.top = '-100px'
+                    }
+                } else {
+                    if (containerRef.current) {
+                        containerRef.current.style.top = '60px'
+                    }
                 }
-            } else {
-                if (containerRef.current) {
-                    containerRef.current.style.top = '60px'
-                }
+                setPrevPos(st <= 0 ? 0 : st)
             }
-            setPrevPos(st <= 0 ? 0 : st)
+            window.addEventListener('scroll', handler)
+            return () => window.removeEventListener('scroll', handler)
         }
-        window.addEventListener('scroll', handler)
-        return () => window.removeEventListener('scroll', handler)
     }, [prevPos])
 
     return (
