@@ -20,7 +20,8 @@ export const UserPage = () => {
     const openReviewsFilterRef = useRef<HTMLButtonElement>(null)
     const reviewFiltersRef = useRef<HTMLUListElement>(null)
     const [reviewItems, setReviewItems] = useState(user?.reviews)
-    const [reviewsPortion, setReviewsPortion] = useState(1)
+    const [reviewsPortion, setReviewsPortion] = useState(0)
+    const [reviewStars, setReviewStars] = useState(0)
 
     const handeNewPortion = () => {
         setReviewsPortion(prev => prev + 1)
@@ -35,6 +36,14 @@ export const UserPage = () => {
             document.title = 'React App'
         }
     }, [])
+    useEffect(() => {
+        if (!user) return;
+
+        let newItems = user.reviews.filter(r => r.stars === reviewStars)
+        setReviewItems(newItems)
+        setShowReviewsFilter(false)
+        setReviewsPortion(1)
+    }, [reviewStars])
 
     if (!user) {
         return <Redirect to='/' />
@@ -49,15 +58,43 @@ export const UserPage = () => {
         }
     }
 
-    const handleReviewItems = (stars: number) => {
-        let newItems = user.reviews.filter(r => r.stars === stars)
-        setReviewItems(newItems)
-        setShowReviewsFilter(false)
-        setReviewsPortion(1)
-    }
-
     let reviewItemsPortion = 10 * reviewsPortion
     let reviewItemsPortionToRender = reviewItems?.slice(0, reviewItemsPortion)
+
+    let reviewsButton
+    if (reviewStars === 0) {
+        reviewsButton = 'Все отзывы'
+    } else if (reviewStars === 1) {
+        reviewsButton = <div>
+        <img src={star} alt='star' />
+    </div>
+    } else if (reviewStars === 2) {
+        reviewsButton = <div>
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+    </div>
+    } else if (reviewStars === 3) {
+        reviewsButton = <div>
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+    </div>
+    } else if (reviewStars === 4) {
+        reviewsButton = <div>
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+    </div>
+    } else if (reviewStars === 5) {
+        reviewsButton = <div>
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+        <img src={star} alt='star' />
+    </div>
+    }
 
     return <div className={styles.userPage}>
         <div className={styles.heading}>
@@ -90,31 +127,31 @@ export const UserPage = () => {
                     <div className={styles.filterReviews}>
                         <p>10 отзывов за 5 месяцев</p>
                         <div className={`${styles.button} ${showReviewsFilter ? styles.active : ''}`}>
-                            <button ref={openReviewsFilterRef} onBlur={handleReviewsFilterBlur} onClick={() => setShowReviewsFilter(prev => !prev)}>Все отзывы</button>
+                            <button ref={openReviewsFilterRef} onBlur={handleReviewsFilterBlur} onClick={() => setShowReviewsFilter(prev => !prev)}>{reviewsButton}</button>
                             {showReviewsFilter && <ul tabIndex={-1} ref={reviewFiltersRef}>
-                                <li onClick={() => handleReviewItems(5)}>
+                                <li onClick={() => setReviewStars(5)}>
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                 </li>
-                                <li onClick={() => handleReviewItems(4)}>
+                                <li onClick={() => setReviewStars(4)}>
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                 </li>
-                                <li onClick={() => handleReviewItems(3)}>
+                                <li onClick={() => setReviewStars(3)}>
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                 </li>
-                                <li onClick={() => handleReviewItems(2)}>
+                                <li onClick={() => setReviewStars(2)}>
                                     <img src={star} alt='star' />
                                     <img src={star} alt='star' />
                                 </li>
-                                <li onClick={() => handleReviewItems(1)}>
+                                <li onClick={() => setReviewStars(1)}>
                                     <img src={star} alt='star' />
                                 </li>
                             </ul>}
