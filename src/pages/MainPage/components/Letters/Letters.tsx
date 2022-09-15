@@ -11,10 +11,9 @@ export default function Letters({ handleClick }: LettersProps) {
     const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (containerRef?.current && window.innerHeight <= containerRef.current.clientHeight) {
+        if (containerRef?.current && window.innerHeight - 50 <= containerRef.current.clientHeight) {
             const handler = () => {
                 var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-                console.log(st > prevPos)
                 if (st > prevPos){
                     if (containerRef.current) {
                         containerRef.current.style.top = '-100px'
