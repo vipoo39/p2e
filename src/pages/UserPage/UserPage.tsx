@@ -19,7 +19,8 @@ export const UserPage = () => {
     const [showReviewsFilter, setShowReviewsFilter] = useState(false)
     const openReviewsFilterRef = useRef<HTMLButtonElement>(null)
     const reviewFiltersRef = useRef<HTMLUListElement>(null)
-    const [reviewItems, setReviewItems] = useState(user?.reviews)
+    type ReviewItemsType = typeof mockUsers[0]['reviews']
+    const [reviewItems, setReviewItems] = useState<ReviewItemsType>([])
     const [reviewsPortion, setReviewsPortion] = useState(1)
     const [reviewStars, setReviewStars] = useState(0)
 
@@ -37,9 +38,20 @@ export const UserPage = () => {
         }
     }, [])
     useEffect(() => {
+        if (user?.reviews) {
+            setReviewItems(user?.reviews)
+        }
+    }, [user?.reviews])
+    useEffect(() => {
         if (!user) return;
 
-        let newItems = user.reviews.filter(r => r.stars === reviewStars)
+        let newItems = user.reviews.filter(r => {
+            if (reviewStars !== 0) {
+                return r.stars === reviewStars
+            } else {
+                return true
+            }
+        })
         setReviewItems(newItems)
         setShowReviewsFilter(false)
         setReviewsPortion(1)
