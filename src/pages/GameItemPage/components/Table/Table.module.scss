@@ -260,7 +260,7 @@
     }
 }
 
-@media(max-width: 1000px){
+@mixin adaptive1000 {
     .avatar{
         flex-wrap: wrap;
     }
@@ -334,6 +334,14 @@
             }
         }
     }
+}
+
+.earlyAdaptive1000 {
+    @include adaptive1000()
+}
+
+@media(max-width: 1000px){
+    @include adaptive1000();
 }
 @media screen and (max-width: 400px) {
     .header {

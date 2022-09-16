@@ -10,6 +10,7 @@ import { GAMES_URL } from './../../../../utils/links';
 export type TableProps = {
     game: string;
     items: typeof kinahMock | typeof accountsMock | typeof itemsMock | typeof servicesMock
+    earlyAdaptive1000?: boolean
 }
 
 export type TableFiltersType = { [key: string]: string }
@@ -71,7 +72,7 @@ export default function Table(props: TableProps) {
         return props.items.filter((value, index, self) => index === self.findIndex((t) => t[filterKey] === value[filterKey])).map(f => f[filterKey])
     }
     return (
-        <div className={styles.table}>
+        <div className={`${styles.table} ${props.earlyAdaptive1000 ? styles.earlyAdaptive1000 : ''}`}>
             <div className={styles.extraFilter}>
                 {pathname.includes('accounts') && <div className={styles.lvlFilter}>
                     <p>Уровень</p>

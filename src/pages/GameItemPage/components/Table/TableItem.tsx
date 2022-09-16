@@ -21,7 +21,12 @@ export type TableItemProps = {
 
 export default function TableItem({ id, server, game, side, description, nikname, avatar, rate, review, count, price, online, category }: TableItemProps) {
     const { pathname } = useLocation()
-    let orderUrl = pathname.replace('/game', ORDER_URL)    
+    let orderUrl
+    if (pathname.includes('game')) {
+        orderUrl = pathname.replace('/game', ORDER_URL)
+    } else {
+        orderUrl = pathname.replace(/\/user\/\d+/, ORDER_URL) + `/${game}`
+    }
 
     return (
         <Link

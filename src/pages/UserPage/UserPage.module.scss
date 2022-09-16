@@ -10,15 +10,21 @@ h5 {
     color: white;
     flex: 1 1 auto;
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: calc(60% - 15px) calc(40% - 15px);
     grid-template-rows: max-content 1fr;
+    gap: 0 30px;
     @media screen and (max-width: 1000px) {
         grid-template-columns: 1fr;
     }
     .heading {
-        grid-column: 1 / 3;
+        @media screen and (min-width: 1001px) {
+            grid-column: 1 / 3;
+        }
         .userData {
             margin-bottom: 40px;
+            @media screen and (max-width: 1000px) {
+                margin-bottom: 30px;
+            }
             .avatar {
                 width: 170px;
                 height: 170px;
@@ -43,9 +49,10 @@ h5 {
         .regDateAndRate {
             display: flex;
             gap: 20px 50px;
-            margin-bottom: 44px;
+            margin-bottom: 40px;
             @media screen and (max-width: 1000px) {
                 flex-direction: column;
+                margin-bottom: 30px;
             }
             // .regDate {
             // }
@@ -56,6 +63,7 @@ h5 {
         @media screen and (max-width: 1000px) {
             grid-row: 2;
             margin-bottom: 0;
+            margin-right: 0;
         }
     }
     .reviews {
@@ -203,13 +211,13 @@ h5 {
         grid-column: 2;
         grid-row: 2;
         @media screen and (max-width: 1000px) {
-            grid-column: 1 / 3;
+            grid-column: 1;
             grid-row: 3;
             margin-bottom: 20px;
             grid-row: 3;
         }
         .chatHeading {
-            background: #1B1B1B;
+            background: #413E3E;
             border-radius: 10px 10px 0 0;
             display: flex;
             gap: 10px;
@@ -239,52 +247,56 @@ h5 {
 .rate {
     .rateContent {
         display: flex;
-        .totalRate {
-            font-size: 14px;
-            margin-right: -20px;
-            & > span {
-                font-size: 60px;
-                line-height: .83333333;
+        flex-wrap: wrap;
+        gap: 8px 15px;
+        .inner {
+            display: flex;
+            .totalRate {
+                font-size: 14px;
+                margin-right: -20px;
+                & > span {
+                    font-size: 60px;
+                    line-height: .83333333;
+                }
             }
-        }
-        .stars {
-            .star {
-                display: flex;
-                &:not(:last-child) {
-                    margin-bottom: 2px;
-                }
-                &.disabled {
-                    .bar {
-                        background: #444;
-                    }
-                }
-                .icons {
+            .stars {
+                .star {
                     display: flex;
-                    justify-content: flex-end;
-                    min-width: 50px;
-                    margin-right: 3px;
-                    & > img {
-                        height: 8px;
+                    &:not(:last-child) {
+                        margin-bottom: 2px;
                     }
-                }
-                .bar {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-top: 4px;
-                    height: 1px;
-                    width: 67px;
-                    background: #dcdcdc;
+                    .icons {
+                        display: flex;
+                        justify-content: flex-end;
+                        min-width: 50px;
+                        margin-right: 3px;
+                        & > img {
+                            height: 8px;
+                        }
+                    }
+                    .barContainer {
+                        background: #444;
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-top: 4px;
+                        height: 1px;
+                        width: 67px;
+                        .bar {
+                            content: '';
+                            display: block;
+                            background: #dcdcdc;
+                            height: 100%;
+                            width: 0;
+                            z-index: 123;
+                        }
+                    }
                 }
             }
         }
         .totalReviews {
             font-weight: bold;
             cursor: pointer;
-            margin-left: 15px;
             transition: all .3s;
-            @media screen and (max-width: 1000px) {
-                padding: 15px 5px;
-            }
             &:hover {
                 text-decoration: underline;
                 opacity: .7;
@@ -311,6 +323,7 @@ h5 {
             margin-left: auto;
             display: flex;
             gap: 5px;
+            cursor: pointer;
             align-items: center;
             .arrows {
                 display: flex;
@@ -318,7 +331,6 @@ h5 {
                 gap: 2px;
                 img {
                     width: 7px;
-                    cursor: pointer;
                     filter: invert(100%);
                 }
                 .arrowTop {

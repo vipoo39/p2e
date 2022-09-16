@@ -1,11 +1,12 @@
 import styles from "./UserPage.module.scss"
 import { useEffect, useState, useRef } from 'react';
-import { mockUsers } from './../../utils/mockData';
+import { kinahMock, mockUsers } from './../../utils/mockData';
 import { Redirect, useParams } from "react-router-dom";
 import { Rate } from "./Rate";
 import { Offer } from "./Offer";
 import star from "./../../assets/star.svg"
 import Chat, { chatType } from "../../components/Chat/Chat";
+import Table from "../GameItemPage/components/Table/Table";
 
 const monthNames = ["январь", "февраль", "марта", "апрель", "май", "июнь",
     "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"
@@ -31,6 +32,12 @@ export const UserPage = () => {
         setReviewsPortion(1)
     }
 
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, [])
     useEffect(() => {
         document.title = `Пользователь ${user?.name} / React App` || 'React App'
         return () => {
@@ -119,26 +126,21 @@ export const UserPage = () => {
                     <h5>Дата регистрации</h5>
                     <p>{`${user.regDate.getMonth()} ${monthNames[user.regDate.getMonth()]}, ${regHour}: ${regMinute}`}</p>
                 </div>
-                <Rate />
+                <Rate items={user.reviews} />
             </div>
         </div>
         <div className={styles.offers}>
             <h5>Предложения</h5>
-            <div className={styles.offers}>
-                {Object.keys(user.offers).map((k, index) => {
-                    //@ts-ignore
-                    return <Offer key={index} category={user.offers[k].category} items={user.offers[k].items} />
-                })}
-            </div>
+            <Table earlyAdaptive1000 items={user.offers} game={'Aion Online'} />
         </div>
         <div id='reviews' className={styles.reviews}>
             <h5>Отзывы</h5>
             <div className={styles.content}>
                 <div className={styles.reviewsContainer}>
-                    <Rate disableTotalCount />
+                    <Rate items={user.reviews} disableTotalCount />
                     <div className={styles.filterReviews}>
-                        <p>10 отзывов за 5 месяцев</p>
-                        <div className={`${styles.button} ${showReviewsFilter ? styles.active : ''}`}>
+                        <p>{user.reviews.length} отзывов за 5 месяцев</p>
+                        <div className={`${styles.button}`}>
                             <button ref={openReviewsFilterRef} onBlur={handleReviewsFilterBlur} onClick={() => setShowReviewsFilter(prev => !prev)}>{reviewsButton}</button>
                             {showReviewsFilter && <ul tabIndex={-1} ref={reviewFiltersRef}>
                                 <li onClick={() => setReviewStars(5)}>
@@ -174,8 +176,8 @@ export const UserPage = () => {
                     {reviewItems?.length === 0 && <p>Не найдено</p>}
                     {reviewItemsPortionToRender?.map((r, index) => {
                         let reviewStars: JSX.Element[] = []
-                        for (let i = 0; i <= 5; i++) {
-                            reviewStars.push(<img src={star} alt={'star'} />)
+                        for (let i = 1; i <= r.stars; i++) {
+                            reviewStars.push(<img key={i} src={star} alt={'star'} />)
                         }
 
                         return <div className={styles.item} key={index}>
