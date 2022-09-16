@@ -65,6 +65,14 @@ h5 {
             margin-bottom: 0;
             margin-right: 0;
         }
+        .table {
+            & > div:nth-child(2n) { //table header
+                justify-content: initial;
+                & > div:nth-child(3n), & > div:nth-child(5n), & > div:nth-child(6n) {
+                    display: none;
+                }
+            }
+        }
     }
     .reviews {
         margin-bottom: 17px;

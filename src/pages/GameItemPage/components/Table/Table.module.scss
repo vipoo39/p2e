@@ -83,6 +83,7 @@
         &:last-child{
             @include textOverflow;
             max-width: 78px;
+            min-width: 50px;
             text-align: right;
             &.price {
                 display: flex;
@@ -91,7 +92,7 @@
                 & > span {
                     &:first-child {
                         @include textOverflow;
-                        max-width: 78px;
+                        max-width: 60px;
                     }
                 }
             }
@@ -99,12 +100,14 @@
         
         &.server {
             @include textOverflow;
-            max-width: 100px;
+            max-width: 60px;
             display: flex;
             cursor: pointer;
+            min-width: 45px;
         }
         &.side {
             max-width: 110px;
+            min-width: 90px;
         }
         &.desc{
             width: 300%;
@@ -112,10 +115,11 @@
 
         &.nik{
             max-width: 170px;
+            min-width: 125px;
         }
         &.count {
             @include textOverflow;
-            max-width: 70px;
+            max-width: 40px;
         }
     }
 }
@@ -143,6 +147,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        min-width: 75px;
         .nameInner {
             position: relative;
             cursor: pointer;
@@ -260,7 +265,7 @@
     }
 }
 
-@mixin adaptive1000 {
+@media(max-width: 1000px){
     .avatar{
         flex-wrap: wrap;
     }
@@ -334,14 +339,6 @@
             }
         }
     }
-}
-
-.earlyAdaptive1000 {
-    @include adaptive1000()
-}
-
-@media(max-width: 1000px){
-    @include adaptive1000();
 }
 @media screen and (max-width: 400px) {
     .header {

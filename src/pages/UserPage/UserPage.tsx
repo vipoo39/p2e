@@ -131,7 +131,7 @@ export const UserPage = () => {
         </div>
         <div className={styles.offers}>
             <h5>Предложения</h5>
-            <Table earlyAdaptive1000 items={user.offers} game={'Aion Online'} />
+            <Table className={styles.table} items={user.offers} game={'Aion Online'} />
         </div>
         <div id='reviews' className={styles.reviews}>
             <h5>Отзывы</h5>
