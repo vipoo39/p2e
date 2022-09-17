@@ -147,7 +147,8 @@
         @include textOverflow;
         display: flex;
         align-items: center;
-        gap: 10px;
+        flex-wrap: wrap;
+        gap: 0 10px;
         min-width: 75px;
         .nameInner {
             position: relative;
