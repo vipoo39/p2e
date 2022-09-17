@@ -120,6 +120,7 @@
         &.count {
             @include textOverflow;
             max-width: 40px;
+            min-width: 40px;
         }
     }
 }
