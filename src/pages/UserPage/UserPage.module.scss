@@ -88,7 +88,9 @@ h5 {
                         min-width: 75px;
                     }
                     & > div:nth-child(2) {
-                        max-width: 95px;
+                        @media screen and (min-width: 1001px) {
+                            max-width: 95px;
+                        }
                     }
                     & > div:nth-child(4n) {
                         @media screen and (min-width: 1001px) {
