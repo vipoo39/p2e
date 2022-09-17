@@ -68,6 +68,9 @@ h5 {
         .table {
             & > div:nth-child(2n) { //table header
                 justify-content: initial;
+                & > div:first-child {
+                    width: fit-content;
+                }
                 & > div:nth-child(4n) {
                     display: none;
                 }
@@ -83,6 +86,9 @@ h5 {
                 & > a {
                     & > div:first-child {
                         min-width: 75px;
+                    }
+                    & > div:nth-child(2) {
+                        max-width: 95px;
                     }
                     & > div:nth-child(4n) {
                         @media screen and (min-width: 1001px) {
