@@ -85,41 +85,62 @@ export const UserPage = () => {
         reviewsButton = 'Все отзывы'
     } else if (reviewStars === 1) {
         reviewsButton = <div>
-        <img src={star} alt='star' />
-    </div>
+            <img src={star} alt='star' />
+        </div>
     } else if (reviewStars === 2) {
         reviewsButton = <div>
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-    </div>
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+        </div>
     } else if (reviewStars === 3) {
         reviewsButton = <div>
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-    </div>
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+        </div>
     } else if (reviewStars === 4) {
         reviewsButton = <div>
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-    </div>
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+        </div>
     } else if (reviewStars === 5) {
         reviewsButton = <div>
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-        <img src={star} alt='star' />
-    </div>
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+            <img src={star} alt='star' />
+        </div>
     }
+
+    type GroupByKeyType = keyof typeof mockUsers[0]['offers'][0]
+    function groupBy(key: GroupByKeyType) {
+        if (!user) return {};
+        return user.offers.reduce((acc, obj) => {
+            const property = obj[key];
+            //@ts-ignore
+            acc[property] = acc[property] || [];
+            //@ts-ignore
+            acc[property].push(obj);
+            return acc;
+        }, {});
+    }
+    let groupByGame = groupBy('game')
+    let Games = Object.keys(groupByGame).map((k, index, array) => {
+        return <div className={styles.tableContainer} key={index}>
+            <h4>{array[index]}</h4>
+            {/* @ts-ignore */}
+            <Table key={index} className={styles.table} items={groupByGame[k]} game={array[index]} />
+        </div>
+    })
 
     return <div className={styles.userPage}>
         <div className={styles.heading}>
             <div className={styles.userData}>
                 <img className={styles.avatar} src={user.avatar} alt='avatar' />
-                <h1 className={styles.name}>{user.name} <span className={user.online ? styles.online : styles.offline}>{user.online ? 'Онлайн' : 'Оффлайн'}</span></h1>
+                <h1 className={styles.name}>{user.name} <span className={user.online ? styles.online : styles.offline}>{user.online ? 'Онлайн' : 'Был недавно'}</span></h1>
             </div>
             <div className={styles.regDateAndRate}>
                 <div className={styles.regDate}>
@@ -131,7 +152,7 @@ export const UserPage = () => {
         </div>
         <div className={styles.offers}>
             <h5>Предложения</h5>
-            <Table className={styles.table} items={user.offers} game={'Aion Online'} />
+            {Games}
         </div>
         <div id='reviews' className={styles.reviews}>
             <h5>Отзывы</h5>
@@ -202,7 +223,7 @@ export const UserPage = () => {
                 <img src={user.avatar} alt='avatar' />
                 <div>
                     <h4>{user.name}</h4>
-                    <p>Был в сети 11 минут назад</p>
+                    <p>Был недавно</p>
                 </div>
             </div>
             <Chat className={styles.chat} value={chatValue} onChange={value => setChatValue(value)} chat={chatItems} setChat={setChatItems} />

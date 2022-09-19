@@ -8,15 +8,6 @@ import { useEffect, useState } from 'react';
 import { lettersMock } from '../../utils/mockData';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
 
-const isVisible = (elem: HTMLElement | null) => {
-    if (!elem) return
-    var position = elem.getBoundingClientRect();
-    // checking whether fully visible
-    if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
-        return true
-    }
-}
-
 export default function MainPage() {
     const letterClick = (item: string) => {
         let element = document.getElementById(item)
@@ -28,6 +19,21 @@ export default function MainPage() {
         });
     }
     const show = useScrollDirection()
+
+    const isVisible = (elem: HTMLElement | null) => {
+        if (!elem) return
+        var position = elem.getBoundingClientRect();
+        // checking whether fully visible
+        if (show) {
+            if ((position.top >= 0 && position.bottom <= window.innerHeight) || (position.top < window.innerHeight && position.bottom >= 0)) {
+                return true
+            }
+        } else {
+            if ((position.top >= 0 && position.bottom - 60 <= window.innerHeight) || (position.top - 60 < window.innerHeight && position.bottom - 60 >= 0)) {
+                return true
+            }
+        }
+    }
 
     useEffect(() => {
         const handle = () => {
@@ -83,6 +89,11 @@ export default function MainPage() {
                     <SearchResultList letter='F' />
                     <SearchResultList letter='G' />
                     <SearchResultList letter='H' />
+                    <SearchResultList letter='I' />
+                    <SearchResultList letter='J' />
+                    <SearchResultList letter='K' />
+                    <SearchResultList letter='L' />
+                    <SearchResultList letter='M' />
                 </div>
             </div>
             <FAQ />
