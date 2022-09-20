@@ -1,7 +1,7 @@
 import styles from "./UserPage.module.scss"
 import { useEffect, useState, useRef } from 'react';
 import { kinahMock, mockUsers } from './../../utils/mockData';
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, Link, useLocation } from "react-router-dom";
 import { Rate } from "./Rate";
 import { Offer } from "./Offer";
 import star from "./../../assets/star.svg"
@@ -24,6 +24,7 @@ export const UserPage = () => {
     const [reviewItems, setReviewItems] = useState<ReviewItemsType>([])
     const [reviewsPortion, setReviewsPortion] = useState(1)
     const [reviewStars, setReviewStars] = useState(0)
+    const { pathname } = useLocation()
 
     const handeNewPortion = () => {
         setReviewsPortion(prev => prev + 1)
@@ -128,12 +129,30 @@ export const UserPage = () => {
         }, {});
     }
     let groupByGame = groupBy('game')
-    let Games = Object.keys(groupByGame).map((k, index, array) => {
-        return <div className={styles.tableContainer} key={index}>
-            <h4>{array[index]}</h4>
-            {/* @ts-ignore */}
-            <Table key={index} className={styles.table} items={groupByGame[k]} game={array[index]} />
-        </div>
+    console.log(Object.keys(groupByGame).length)
+    let Games = Object.keys(groupByGame).map((k, index) => {
+        console.log('a')
+        //@ts-ignore
+        let groupByCategories: [] = groupByGame[k].reduce((acc, obj) => {
+            //@ts-ignore
+            const property = obj['category'].en;
+            acc[property] = acc[property] || [];
+            //@ts-ignore
+            acc[property].push(obj);
+            return acc;
+        }, {});
+
+        return Object.keys(groupByCategories).map((k, index) => {
+            {/* @ts-ignore */ }
+            let firstItem = groupByCategories[k][0]
+
+            return <div className={styles.tableContainer} key={index}>
+                {/* @ts-ignore */}
+                <Link to={`/game/${firstItem.game}/${firstItem.category.en}`}>{`${firstItem.game} ${firstItem.category.ru}`}</Link>
+                {/* @ts-ignore */}
+                <Table customCategory={{ name: firstItem.category.en, link: pathname }} className={styles.table} items={groupByCategories[k]} game={firstItem.game} />
+            </div>
+        })
     })
 
     return <div className={styles.userPage}>

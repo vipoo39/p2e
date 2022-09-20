@@ -11,6 +11,10 @@ export type TableProps = {
     game: string;
     items: typeof kinahMock | typeof accountsMock | typeof itemsMock | typeof servicesMock
     className?: string
+    customCategory?: {
+        name: string
+        link: string
+    }
 }
 
 export type TableFiltersType = { [key: string]: string }
@@ -19,6 +23,9 @@ export type TableItemKeys = keyof TableFiltersType
 export default function Table(props: TableProps) {
     const { pathname } = useLocation()
     let category = pathname.includes('kinah') ? {name: 'Кинары', link: pathname} : pathname.includes('accounts') ? {name: 'Аккаунты', link: pathname} : pathname.includes('items') ? {name: 'Предметы', link: pathname} : pathname.includes('services') ? {name: 'Услуги', link: pathname} : null
+    if (pathname.includes('user')) {
+        category = props.customCategory || {name: '', link: ''}
+    }
     // @ts-ignore
     useBreadcrumbs([{name: props.game, link: `${GAMES_URL}/${props.game}`}, category].filter(i => i !== null))
     const [filters, setFilters] = useState<TableFiltersType>({} as TableFiltersType)

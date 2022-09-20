@@ -25,7 +25,8 @@ export default function TableItem({ id, server, game, side, description, nikname
     if (pathname.includes('game')) {
         orderUrl = pathname.replace('/game', ORDER_URL)
     } else {
-        orderUrl = pathname.replace(/\/user\/\d+/, ORDER_URL) + `/${game}`
+        //@ts-ignore
+        orderUrl = pathname.replace(/\/user\/\d+/, ORDER_URL) + `/${game}${category ? `/${category.en}` : ''}`
     }
 
     return (
