@@ -16,6 +16,11 @@ export default function OrderPage() {
     const history = useHistory()
     let breadcrumbItems = [{ name: location.state?.game, link: `${GAMES_URL}/${location.state?.game}` } || null, location.state?.category ? location.state?.category : null].filter(i => i !== null)
     //@ts-ignore
+    if (breadcrumbItems.some(i => i.ru !== undefined)) {
+        //@ts-ignore
+        breadcrumbItems = [{ name: location.state?.game, link: `${GAMES_URL}/${location.state?.game}` } || null, location.state?.category ? {name: location.state?.category.ru, link: `${GAMES_URL}/${location.state?.game}/${location.state?.category.en}`} : null].filter(i => i !== null)
+    }
+    //@ts-ignore
     useBreadcrumbs(breadcrumbItems)
     const [name, setName] = useState('')
     const [price, setPrice] = useState('0')

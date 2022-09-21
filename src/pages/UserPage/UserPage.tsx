@@ -129,9 +129,7 @@ export const UserPage = () => {
         }, {});
     }
     let groupByGame = groupBy('game')
-    console.log(Object.keys(groupByGame).length)
     let Games = Object.keys(groupByGame).map((k, index) => {
-        console.log('a')
         //@ts-ignore
         let groupByCategories: [] = groupByGame[k].reduce((acc, obj) => {
             //@ts-ignore
