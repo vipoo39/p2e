@@ -105,7 +105,7 @@ function App() {
     </div>
   }
   return (
-    <Router>
+    <Router basename='/p2b'>
       <NavigationContainer />
     </Router>
   );
