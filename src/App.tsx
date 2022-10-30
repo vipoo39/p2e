@@ -22,22 +22,23 @@ import './App.scss';
 import { ArrowUp } from './pages/OrderPage/ArrowUp';
 import { UserPage } from './pages/UserPage/UserPage';
 
+import useToken from "./hooks/useToken";
+
 function App() {
   const NavigationContainer = () => {
     const location = useLocation()
-    const checkAuth = useCallback(() =>
-      location.pathname === PROFILE_URL ||
-      location.pathname === FINANCE_URL ||
-      location.pathname === SETTINGS_URL ||
-      !!location.pathname.match(COMUNITY_URL) ||
-      location.pathname === BUY_URL
-      , [location.pathname])
+
+    const { token, setToken } = useToken();
+
+    // TODO (A.A.):Clarify auth condition
+    const checkAuth = useCallback(() => !!token, [token]);
+
     const [showMenu, setIsShowMenu] = useState(false)
 
     return <div className="App"
     // style={showMenu ? { left: '-80vw'} : {}}
     >
-      <Header auth={checkAuth()} setShow={setIsShowMenu} show={showMenu} />
+      <Header auth={checkAuth()} setShow={setIsShowMenu} show={showMenu} setToken={setToken} />
       <Switch location={location}>
         <Route path={MAIN_URL} exact>
           <MainPage />
@@ -58,10 +59,10 @@ function App() {
           <InfoPage variant={InfoPageVariant.Success} />
         </Route>
         <Route path={REGISTER_URL} exact>
-          <AuthPage variant={AuthPageVariant.Reg} />
+          <AuthPage variant={AuthPageVariant.Reg} setToken={setToken} />
         </Route>
         <Route path={SINGIN_URL} exact>
-          <AuthPage variant={AuthPageVariant.Sign} />
+          <AuthPage variant={AuthPageVariant.Sign} setToken={setToken} />
         </Route>
         <Route path={CONTACT_URL} exact>
           <ContactPage />

@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { breadcrumbsReducer } from './reducers/breadcrumbsReducer'
+import { feedBackReducer } from './reducers/feedbackReducer'
 import { searchReducer } from './reducers/searchReducer'
 
 export const store = configureStore({
   reducer: {
     breadcrumbs: breadcrumbsReducer,
     search: searchReducer,
+    feedBack: feedBackReducer
   },
 })
 
