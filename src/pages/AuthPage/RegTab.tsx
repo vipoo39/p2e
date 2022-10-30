@@ -5,6 +5,8 @@ import checkSubmit from '../../utils/checkSubmit'
 import Repatcha from 'react-google-recaptcha'
 import { Toastify } from './../../components/Toastify/Toastify';
 import { toast } from 'react-toastify';
+import { ApiService } from '../../api/ApiService';
+import { UserRegistrationCredentials } from '../../models/userRegistrationCredentials';
 
 export default function RegTab() {
     const [toastifyStatus, setToastifyStatus] = useState<'success' | 'error'>('success')
@@ -24,6 +26,11 @@ export default function RegTab() {
         token && setCaptchaVerify(true)
     }, []);
 
+    const userRegistration = async (fullUserRegistrationCredentials: UserRegistrationCredentials) => {
+        const apiService = new ApiService();
+        await apiService.userRegistration(fullUserRegistrationCredentials);
+    }
+
     const handleSubmit = useCallback((event: FormEvent) => {
         event.preventDefault()
         const nResp = checkSubmit('name', name)
@@ -37,7 +44,6 @@ export default function RegTab() {
             mResp.status &&
             pass === passT && TOURResp.status && captchaVerify
         ) {
-            let obj = { name, email: mail, pass }
             setErr('')
             setName('')
             setMail('')
@@ -48,7 +54,16 @@ export default function RegTab() {
             captchaRef.current?.reset && captchaRef.current?.reset()
             setToastifyStatus('success')
             toast('Успех')
-            console.log(obj)
+
+            const fullUserRegistrationCredentials: UserRegistrationCredentials = {
+                username: name,
+                email: mail,
+                password: pass,
+                repeat_password: passT,
+                agreement_confirmation: true
+            }
+
+            userRegistration(fullUserRegistrationCredentials)
         } else {
             setErr(
                 (!nResp.status && nResp.text) ||

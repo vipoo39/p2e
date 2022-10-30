@@ -6,6 +6,7 @@ import SignTab from './SignTab';
 
 export type AuthPageProps = {
     variant: AuthPageVariant;
+    setToken: (usertoken: any) => void;
 }
 
 export enum AuthPageVariant {
@@ -13,27 +14,27 @@ export enum AuthPageVariant {
     Sign
 }
 
-export default function AuthPage({variant} : AuthPageProps){
-    return(
+export default function AuthPage({ setToken, variant }: AuthPageProps) {
+    return (
         <div className={styles.container}>
             <div className={styles.card}>
                 <div className={styles.tab}>
-                    <Link 
-                        to={{pathname: SINGIN_URL}} 
-                        className={variant === AuthPageVariant.Sign ? `${styles.tabItem} ${styles.tabItemActive}` : styles.tabItem }
-                        style={{borderRadius: '10px 0px'}}
+                    <Link
+                        to={{ pathname: SINGIN_URL }}
+                        className={variant === AuthPageVariant.Sign ? `${styles.tabItem} ${styles.tabItemActive}` : styles.tabItem}
+                        style={{ borderRadius: '10px 0px' }}
                     >Вход</Link>
-                    <Link 
-                        to={{pathname: REGISTER_URL}} 
+                    <Link
+                        to={{ pathname: REGISTER_URL }}
                         className={variant === AuthPageVariant.Reg ? `${styles.tabItem} ${styles.tabItemActive}` : styles.tabItem}
-                        style={{borderRadius: '0px 10px'}}
+                        style={{ borderRadius: '0px 10px' }}
                     >Регистрация</Link>
                 </div>
-                {variant === AuthPageVariant.Reg ? (
-                    <RegTab/>
-                ) : (
-                    <SignTab/>
-                )}
+                {
+                    variant === AuthPageVariant.Reg
+                        ? (<RegTab />)
+                        : (<SignTab setToken={setToken} />)
+                }
             </div>
         </div>
     )

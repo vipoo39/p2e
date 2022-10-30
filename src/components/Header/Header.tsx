@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from '../Logo/Logo'
 import styles from './Header.module.scss'
-import { MAIN_URL, REGISTER_URL, SERVICE_URL, SINGIN_URL, CONTACT_URL, FINANCE_URL, BUY_URL, COMUNITY_URL } from '../../utils/links';
+import { MAIN_URL, REGISTER_URL, SINGIN_URL, CONTACT_URL, FINANCE_URL, BUY_URL, COMUNITY_URL } from '../../utils/links';
 import ProfileCircle from './ProfileCircle';
 import Language from './Language';
 import Service from './Service';
@@ -13,9 +13,10 @@ export type HeaderProps = {
     auth?: boolean;
     show: boolean;
     setShow: (val: boolean) => void;
+    setToken: (val: any) => void;
 }
 
-export default function Header({ auth, show, setShow }: HeaderProps) {
+export default function Header({ auth, show, setShow, setToken }: HeaderProps) {
     const [searchValue, setSearchvalue] = useState('')
     const [isPcSearch, setIsPCSearch] = useState(false)
     const [isMobileSearch, setIsMobileSearch] = useState(false)
@@ -129,7 +130,7 @@ export default function Header({ auth, show, setShow }: HeaderProps) {
                                     <Link to={{ pathname: COMUNITY_URL }} onClick={() => setShow(false)}>
                                         Сообщения
                                     </Link>
-                                    <ProfileCircle hide={setShow} />
+                                    <ProfileCircle hide={setShow} setToken={setToken} />
                                 </>
                             ) : (
                                 <>

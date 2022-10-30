@@ -3,6 +3,9 @@ import { useState, useCallback, FormEvent, useRef } from 'react'
 import checkSubmit from '../../utils/checkSubmit';
 import { Toastify } from '../../components/Toastify/Toastify';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { addFeedback as addFeedback } from '../../redux/reducers/feedbackReducer';
+import { Feedback } from '../../models/feedback';
 
 export default function ContactPage() {
     const [toastifyStatus, setToastifyStatus] = useState<'success' | 'error'>('success')
@@ -12,6 +15,9 @@ export default function ContactPage() {
     const [tel, setTel] = useState('')
     const [mess, setMess] = useState('')
     const [err, setErr] = useState('')
+
+    const dispatch = useDispatch()
+
     const ref = useRef<HTMLFormElement>(null)
     const handleSubmit = useCallback((event: FormEvent) => {
         event.preventDefault()
@@ -31,8 +37,16 @@ export default function ContactPage() {
             setMess('')
             setToastifyStatus('success')
             toast('Успех!')
-            let obj = { name, mail, tel, mess }
-            console.log(obj)
+            
+            const feedbackSave: Feedback =
+            {
+                name: name,
+                email: mail,
+                phone_number: tel,
+                text_of_feedback: mess
+            }
+
+            dispatch(addFeedback(feedbackSave));
         } else {
             setErr(
                 (!nResp.status && nResp.text) ||
